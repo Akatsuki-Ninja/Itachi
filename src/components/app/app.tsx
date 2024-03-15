@@ -1,9 +1,9 @@
-import {ChakraProvider} from "@chakra-ui/react";
-import {WelcomeScreen} from "../welcome-screen/welcome-screen.tsx";
+import { ChakraProvider } from '@chakra-ui/react'
+import { WelcomeScreen } from '../welcome-screen/welcome-screen.tsx'
 
-export const App =() => {
+export const App = () => {
   return (
-    <main className="app">
+    <main className='app'>
       <ChakraProvider>
         <WelcomeScreen />
       </ChakraProvider>

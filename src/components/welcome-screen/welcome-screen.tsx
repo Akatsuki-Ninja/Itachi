@@ -1,18 +1,25 @@
-import {Button, Grid, GridItem, Heading} from "@chakra-ui/react";
-import {WelcomeCard} from "./welcome-card.tsx";
+import { Button, Grid, GridItem, Heading } from '@chakra-ui/react'
+import { WelcomeCard } from './welcome-card.tsx'
 
 export const WelcomeScreen = () => {
   return (
-    <Grid templateColumns={'repeat(2, 1fr)'} h={'100vh'} gap={4} p={8}>
+    <Grid
+      gap={4}
+      h={'100vh'}
+      p={8}
+      templateColumns={'repeat(2, 1fr)'}
+    >
       <GridItem>
-        <WelcomeCard header={<Heading size={'xl'}>
-          Explore World
-        </Heading>} body={<Button colorScheme='whatsapp'>Open World Map</Button>}/>
+        <WelcomeCard
+          body={<Button colorScheme='whatsapp'>Open World Map</Button>}
+          header={<Heading size={'xl'}>Explore World</Heading>}
+        />
       </GridItem>
       <GridItem>
-        <WelcomeCard header={<Heading size={'xl'}>
-          Random Chat
-        </Heading>} body={<Button colorScheme='facebook'>Snip Open Conversations</Button>}/>
+        <WelcomeCard
+          body={<Button colorScheme='facebook'>Snip Open Conversations</Button>}
+          header={<Heading size={'xl'}>Random Chat</Heading>}
+        />
       </GridItem>
     </Grid>
   )
