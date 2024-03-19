@@ -1,20 +1,20 @@
 import { Button, Grid, GridItem, Heading } from '@chakra-ui/react'
-import { useAtom } from 'jotai'
 import { useState } from 'react'
-import { userAtom } from '../../store/user.store.ts'
 import { WelcomeCard } from './welcome-card.tsx'
 import { EnterChatModal } from './enter-chat-modal.tsx'
+import { useAuthQuery } from '@/web/auth/hooks/use-auth-query.ts'
 
 export const WelcomeScreen = () => {
-  const [user, setUser] = useAtom(userAtom)
+  const { data: user } = useAuthQuery()
   const [showAuthModal, setShowAuthModal] = useState(false)
 
-  const onChatClick = () => {
+  const handleChatClick = () => {
     if (!user) {
       setShowAuthModal(true)
+      return
     }
 
-    // redirect
+    alert('redirect')
   }
 
   const handleClose = () => {
@@ -44,7 +44,7 @@ export const WelcomeScreen = () => {
             body={
               <Button
                 colorScheme='facebook'
-                onClick={onChatClick}
+                onClick={handleChatClick}
               >
                 Snip Open Conversations
               </Button>

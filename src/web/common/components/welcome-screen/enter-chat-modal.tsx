@@ -14,8 +14,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { FormEvent } from 'react'
-import { useSetAtom } from 'jotai'
-import { userAtom } from '../../store/user.store.ts'
+import { useSignupMutation } from '@/web/auth/hooks/use-signup.mutation.ts'
 
 type EnterChatModalProps = {
   open: boolean
@@ -23,11 +22,16 @@ type EnterChatModalProps = {
 }
 
 export const EnterChatModal = ({ open, onClose }: EnterChatModalProps) => {
-  const setUser = useSetAtom(userAtom)
-  const sign = (event: FormEvent) => {
+  const { mutate: signup } = useSignupMutation({
+    onSuccess: onClose,
+  })
+
+  const sign = async (event: FormEvent) => {
     event.preventDefault()
 
-    setUser({ name: event.currentTarget.name.value, id: 'unique' })
+    signup({
+      name: (event.currentTarget as any).name.value,
+    })
   }
 
   return (
@@ -48,8 +52,9 @@ export const EnterChatModal = ({ open, onClose }: EnterChatModalProps) => {
                 type='text'
               />
               <FormHelperText>
-                <Text>You will entered as a temporary user.</Text>
-                <Text>Register for stay safe.</Text>
+                <Text>
+                  You will entered as a temporary user. Register for stay safe.
+                </Text>
               </FormHelperText>
             </FormControl>
           </ModalBody>
