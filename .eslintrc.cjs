@@ -9,14 +9,19 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:import/recommended',
+    'plugin:import/typescript',
     'plugin:prettier/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'import'],
   settings: {
     react: {
       version: 'detect'
+    },
+    'import/resolver': {
+      typescript: true,
+      node: true
     }
   },
   rules: {
@@ -45,6 +50,14 @@ module.exports = {
       }],
     'react/jsx-sort-props': 2,
     'import/no-unresolved': 0,
-    'react/no-unescaped-entities': 0
+    'import/order': 2,
+    'import/no-named-as-default-member': 0,
+    'import/no-named-as-default': 0,
+    'import/no-duplicates': 0,
+    'import/default': 0,
+    'import/namespace': 0,
+    'react/no-unescaped-entities': 0,
+    'no-unused-vars': 0,
+    '@typescript-eslint/no-unused-vars': 0
   },
 }
