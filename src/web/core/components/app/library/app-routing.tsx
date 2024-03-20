@@ -7,10 +7,11 @@ import {
 
 import { WelcomeScreen } from '@/web/common'
 import { RoomScreen } from '@/web/room'
+import { WorldmapScreen } from '@/web/worldmap'
 
 import { Root } from '../root.tsx'
 
-import { INDEX_PATH, ROOM_PATH } from './app-routing-paths.ts'
+import { INDEX_PATH, ROOM_PATH, WORLDMAP_PATH } from './app-routing-paths.ts'
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -38,6 +39,12 @@ export const roomRoute = createRoute({
   component: RoomScreen,
 })
 
-const routeTree = rootRoute.addChildren([indexRoute, roomRoute])
+export const worldmapRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: WORLDMAP_PATH,
+  component: WorldmapScreen,
+})
+
+const routeTree = rootRoute.addChildren([indexRoute, roomRoute, worldmapRoute])
 
 export const router = createRouter({ routeTree })
