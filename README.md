@@ -1,30 +1,24 @@
-# React + TypeScript + Vite
+# Itachi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The MVP application is forced to create a video chat application 
+that will join users around the world.
+We are using hyped technologies to test how fast
+we could develop application and use third-party services to import additional abilities
+in a way to exclude backend development.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Start database.
+```shell
+docker run --rm --pull always -p 8000:8000 surrealdb/surrealdb:latest start
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Run application.
+```shell
+npm i
+npm run dev
+```
+
+---
+
+![Logo](https://cdn.dribbble.com/userupload/8642639/file/original-f61257048a5829b70a23b6ff48adc87f.png?resize=2048x2896)
