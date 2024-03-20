@@ -72,7 +72,7 @@ export const authenticate = async (token: string) => {
   return db.authenticate(token)
 }
 
-export const getAuthUser = async () => {
+export const findAuthUser = async () => {
   await ready()
 
   const [[user]] = await query<UserEntity | TemporalUserEntity>(`

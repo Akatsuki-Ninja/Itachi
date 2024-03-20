@@ -1,15 +1,9 @@
-import { useEffect } from 'react'
-import { WelcomeScreen } from '@/web/common'
-import { removeToken, useAuthQuery } from '@/web/auth'
+import { Outlet } from '@tanstack/react-router'
+
+import { useAuth } from '@/web/auth'
 
 export const App = () => {
-  const { isError, isFetched } = useAuthQuery()
-
-  useEffect(() => {
-    if (isError) {
-      removeToken()
-    }
-  }, [isError, isFetched])
+  const { isFetched } = useAuth()
 
   if (!isFetched) {
     return null
@@ -17,7 +11,7 @@ export const App = () => {
 
   return (
     <main>
-      <WelcomeScreen />
+      <Outlet />
     </main>
   )
 }

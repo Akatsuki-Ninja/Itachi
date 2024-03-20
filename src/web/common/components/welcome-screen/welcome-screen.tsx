@@ -1,20 +1,31 @@
 import { Button, Grid, GridItem, Heading } from '@chakra-ui/react'
 import { useState } from 'react'
+import { useNavigate } from '@tanstack/react-router'
+
+import { useAuth } from '@/web/auth'
+
+import { ROOM_PATH } from 'src/web/core/components/app-router'
+
 import { WelcomeCard } from './welcome-card.tsx'
 import { EnterChatModal } from './enter-chat-modal.tsx'
-import { useAuthQuery } from '@/web/auth/hooks/use-auth-query.ts'
 
 export const WelcomeScreen = () => {
-  const { data: user } = useAuthQuery()
+  const { data: user } = useAuth()
+  const navigate = useNavigate()
+
   const [showAuthModal, setShowAuthModal] = useState(false)
 
-  const handleChatClick = () => {
+  const onSuccess = async () => {
+    await navigate({ to: ROOM_PATH })
+  }
+
+  const handleChatClick = async () => {
     if (!user) {
       setShowAuthModal(true)
       return
     }
 
-    alert('redirect')
+    await onSuccess()
   }
 
   const handleClose = () => {
@@ -25,6 +36,7 @@ export const WelcomeScreen = () => {
     <>
       <EnterChatModal
         onClose={handleClose}
+        onSuccess={onSuccess}
         open={showAuthModal}
       />
       <Grid

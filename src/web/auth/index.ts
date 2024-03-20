@@ -1,3 +1,2 @@
-export * from './library/manage-token.ts'
-export * from './hooks/use-auth-query.ts'
-export * from './hooks/use-signup.mutation.ts'
+export * from './hooks/use-auth.ts'
+export * from './hooks/use-signup.ts'

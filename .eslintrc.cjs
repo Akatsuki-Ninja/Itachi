@@ -52,7 +52,17 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 0,
     '@typescript-eslint/no-explicit-any': 0,
     'import/no-unresolved': 0,
-    'import/order': 2,
+    'import/order': [2, {
+      'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+      'newlines-between': 'always',
+      'pathGroups': [
+        {
+          'pattern': '@/**',
+          'group': 'internal',
+          'position': 'before',
+        },
+      ],
+    }],
     'import/no-named-as-default-member': 0,
     'import/no-named-as-default': 0,
     'import/no-duplicates': 0,

@@ -14,16 +14,22 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { FormEvent } from 'react'
-import { useSignupMutation } from '@/web/auth/hooks/use-signup.mutation.ts'
+
+import { useSignup } from '@/web/auth'
 
 type EnterChatModalProps = {
   open: boolean
   onClose: () => void
+  onSuccess: () => void
 }
 
-export const EnterChatModal = ({ open, onClose }: EnterChatModalProps) => {
-  const { mutate: signup } = useSignupMutation({
-    onSuccess: onClose,
+export const EnterChatModal = ({
+  open,
+  onClose,
+  onSuccess,
+}: EnterChatModalProps) => {
+  const { mutate: signup } = useSignup({
+    onSuccess: onSuccess,
   })
 
   const sign = async (event: FormEvent) => {
