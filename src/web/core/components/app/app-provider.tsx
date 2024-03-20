@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClientProvider } from '@tanstack/react-query'
 
-import { queryClient } from './library.ts'
+import { queryClient } from './library/query-client'
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   return (

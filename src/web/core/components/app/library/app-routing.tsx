@@ -2,12 +2,15 @@ import {
   createRootRoute,
   createRoute,
   createRouter,
+  Outlet,
 } from '@tanstack/react-router'
 
 import { WelcomeScreen } from '@/web/common'
 import { RoomScreen } from '@/web/room'
 
-import { App } from '../../app'
+import { Root } from '../root.tsx'
+
+import { INDEX_PATH, ROOM_PATH } from './app-routing-paths.ts'
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -15,11 +18,12 @@ declare module '@tanstack/react-router' {
   }
 }
 
-export const INDEX_PATH = '/'
-export const ROOM_PATH = '/room'
-
 export const rootRoute = createRootRoute({
-  component: App,
+  component: () => (
+    <Root>
+      <Outlet />
+    </Root>
+  ),
 })
 
 export const indexRoute = createRoute({

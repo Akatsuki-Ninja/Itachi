@@ -1,17 +1,14 @@
-import { Outlet } from '@tanstack/react-router'
+import React from 'react'
 
-import { useAuth } from '@/web/auth'
+import { AppProvider } from './app-provider'
+import { AppRouter } from './app-router.tsx'
 
 export const App = () => {
-  const { isFetched } = useAuth()
-
-  if (!isFetched) {
-    return null
-  }
-
   return (
-    <main>
-      <Outlet />
-    </main>
+    <React.StrictMode>
+      <AppProvider>
+        <AppRouter />
+      </AppProvider>
+    </React.StrictMode>
   )
 }

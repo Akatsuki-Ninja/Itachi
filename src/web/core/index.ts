@@ -1,3 +1,3 @@
-export { App } from './components/app'
-export { AppProvider } from './components/app-provider'
-export { AppRouter } from './components/app-router'
+export * from './components/app'
+export * from '@/web/core/components/app/library/app-routing-paths.ts'
+export * from '@/web/core/components/app/library/app-routing.tsx'
