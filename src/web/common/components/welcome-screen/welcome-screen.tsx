@@ -2,8 +2,9 @@ import { Button, Grid, GridItem, Heading } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 
-import { ROOM_PATH, WORLDMAP_PATH } from '@/web/core'
 import { useAuth } from '@/web/auth'
+import { ROOM_PATH } from '@/web/core/routes/room-route.ts'
+import { WORLDMAP_PATH } from '@/web/core/routes/worldmap-route.ts'
 
 import { WelcomeCard } from './welcome-card.tsx'
 import { EnterChatModal } from './enter-chat-modal.tsx'
