@@ -1,1 +1,1 @@
-export * from './components/room-screen'
+export * from './screens/room-screen'
