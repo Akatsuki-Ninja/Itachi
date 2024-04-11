@@ -1,12 +1,13 @@
 import { Button, Grid, GridItem, Heading } from '@chakra-ui/react'
-import { useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
+import { useState } from 'react'
 
-import { ROOM_PATH } from '@/web/core'
 import { useAuth } from '@/web/auth'
+import { ROOM_PATH } from '@/web/core/routes/room-route.ts'
+import { WORLDMAP_PATH } from '@/web/core/routes/worldmap-route.ts'
 
-import { WelcomeCard } from './welcome-card.tsx'
 import { EnterChatModal } from './enter-chat-modal.tsx'
+import { WelcomeCard } from './welcome-card.tsx'
 
 export const WelcomeScreen = () => {
   const { data: user } = useAuth()
@@ -25,6 +26,10 @@ export const WelcomeScreen = () => {
     }
 
     await onSuccess()
+  }
+
+  const handleMapClick = async () => {
+    await navigate({ to: WORLDMAP_PATH })
   }
 
   const handleClose = () => {
@@ -46,7 +51,14 @@ export const WelcomeScreen = () => {
       >
         <GridItem>
           <WelcomeCard
-            body={<Button colorScheme='whatsapp'>Open World Map</Button>}
+            body={
+              <Button
+                colorScheme='whatsapp'
+                onClick={handleMapClick}
+              >
+                Open World Map
+              </Button>
+            }
             header={<Heading size={'xl'}>Explore World</Heading>}
           />
         </GridItem>
