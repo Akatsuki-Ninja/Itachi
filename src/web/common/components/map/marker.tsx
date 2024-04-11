@@ -1,8 +1,8 @@
-import { ReactNode, useEffect } from 'react'
+import { type ReactNode, useEffect } from 'react'
 
 import { useMap } from './hooks/use-map.ts'
-import { Coords } from './utils/create-map.ts'
 import { createMarker } from './utils/create-marker.ts'
+import { type Coords } from './utils/google.ts'
 
 export type MarkerProps = {
   content?: ReactNode

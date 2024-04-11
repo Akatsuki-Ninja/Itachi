@@ -1,8 +1,10 @@
 import { createContext, useContext } from 'react'
 
-import { Map } from '../utils/create-map.ts'
+import { type MapInstance } from '../utils/google.ts'
 
-export const MapContext = createContext<Map | null | undefined>(undefined)
+export const MapContext = createContext<MapInstance | null | undefined>(
+  undefined
+)
 
 export const useMap = () => {
   const context = useContext(MapContext)

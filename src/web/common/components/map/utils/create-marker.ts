@@ -1,12 +1,17 @@
 import { type ReactNode } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
-import { type Coords, google, type Map, type MarkerLibrary } from './google.ts'
+import {
+  type Coords,
+  google,
+  type MapInstance,
+  type MarkerLibrary,
+} from './google.ts'
 
 export type MakerOptions = {
   content?: null | ReactNode | string | undefined
   coords: Coords
-  map: Map
+  map: MapInstance
   title?: null | ReactNode | string | undefined
 }
 

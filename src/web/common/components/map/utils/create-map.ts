@@ -1,6 +1,6 @@
 import { Loader } from '@googlemaps/js-api-loader'
 
-import { type Coords, type Map } from './google'
+import { type Coords, type MapInstance } from './google'
 
 export type MapOptions = {
   apiKey: string
@@ -15,7 +15,7 @@ export const createMap = async ({
   apiKey,
   center,
   zoom,
-}: MapOptions): Promise<Map> => {
+}: MapOptions): Promise<MapInstance> => {
   const { Map } = await new Loader({
     apiKey,
   }).importLibrary('maps')

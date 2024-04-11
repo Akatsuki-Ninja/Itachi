@@ -1,9 +1,9 @@
 import { Box } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
-import { Coords, Map } from '@/web/common'
+import { type Coords, Map } from '@/web/common'
 import { useAuth } from '@/web/auth'
-import { TemporalUserEntity, UserEntity } from '@/database'
+import { type TemporalUserEntity, type UserEntity } from '@/database'
 
 import { UserMarker } from './user-marker.tsx'
 
