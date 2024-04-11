@@ -1,6 +1,6 @@
-import { ReactNode } from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClientProvider } from '@tanstack/react-query'
+import { ReactNode } from 'react'
 
 import { queryClient } from './library/query-client'
 

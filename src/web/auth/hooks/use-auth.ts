@@ -6,7 +6,7 @@ export const AUTH_QUERY_KEY = 'auth'
 
 export const useAuth = () => {
   return useQuery({
-    queryKey: [AUTH_QUERY_KEY],
     queryFn: findAuth,
+    queryKey: [AUTH_QUERY_KEY],
   })
 }

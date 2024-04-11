@@ -18,15 +18,15 @@ import { FormEvent } from 'react'
 import { useSignup } from '@/web/auth'
 
 type EnterChatModalProps = {
-  open: boolean
   onClose: () => void
   onSuccess: () => void
+  open: boolean
 }
 
 export const EnterChatModal = ({
-  open,
   onClose,
   onSuccess,
+  open,
 }: EnterChatModalProps) => {
   const { mutate: signup } = useSignup({
     onSuccess: onSuccess,

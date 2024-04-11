@@ -1,1 +1,1 @@
-export * from './components/worldmap-screen'
+export * from './components/world-map-screen'

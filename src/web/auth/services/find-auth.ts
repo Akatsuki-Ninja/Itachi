@@ -8,7 +8,7 @@ export const findAuth = async () => {
   try {
     if (token) {
       await authenticate(token)
-      await findAuthUser()
+      return await findAuthUser()
     }
   } catch (error) {
     removeToken()

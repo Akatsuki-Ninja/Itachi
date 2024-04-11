@@ -11,7 +11,8 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:prettier/recommended',
-    'plugin:@tanstack/eslint-plugin-query/recommended'
+    'plugin:@tanstack/eslint-plugin-query/recommended',
+    "plugin:perfectionist/recommended-alphabetical"
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -71,6 +72,7 @@ module.exports = {
     'unused-imports/no-unused-imports': 2,
     'unused-imports/no-unused-vars': 2,
     'react/jsx-sort-props': 2,
+    'perfectionist/sort-imports': 0,
     'react/no-unescaped-entities': 0,
     'no-unused-vars': 0,
   },

@@ -7,7 +7,7 @@ import { rootRoute } from './app-router'
 export const ROOM_PATH = '/room'
 
 export const roomRoute = createRoute({
+  component: RoomScreen,
   getParentRoute: () => rootRoute,
   path: ROOM_PATH,
-  component: RoomScreen,
 })

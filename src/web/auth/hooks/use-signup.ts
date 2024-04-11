@@ -13,13 +13,13 @@ export const useSignup = ({
   const queryClient = useQueryClient()
 
   return useMutation({
-    onSuccess,
-    mutationFn: async (credentials: TemporalSignupDto | SignupDto) => {
+    mutationFn: async (credentials: SignupDto | TemporalSignupDto) => {
       const token = await signup(credentials)
 
       await queryClient.invalidateQueries({ queryKey: [AUTH_QUERY_KEY] })
 
       return token
     },
+    onSuccess,
   })
 }

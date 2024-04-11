@@ -2,11 +2,11 @@ import { Box, Card, Flex } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 type WelcomeCardProps = {
-  header?: ReactNode
   body?: ReactNode
+  header?: ReactNode
 }
 
-export const WelcomeCard = ({ header, body }: WelcomeCardProps) => {
+export const WelcomeCard = ({ body, header }: WelcomeCardProps) => {
   return (
     <Card h={'100%'}>
       <Flex

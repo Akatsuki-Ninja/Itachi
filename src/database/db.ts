@@ -4,8 +4,8 @@ const db = new Surreal()
 
 export const connect = async () => {
   await db.connect('http://127.0.0.1:8000/rpc', {
-    namespace: 'main',
     database: 'itachi',
+    namespace: 'main',
   })
 }
 
@@ -40,8 +40,8 @@ export const signup = async (credentials: SignupDto | TemporalSignupDto) => {
   await ready()
 
   return await db.signup({
-    namespace: 'main',
     database: 'itachi',
+    namespace: 'main',
     scope: isTemporal(credentials) ? 'temporal' : 'user',
     ...credentials,
   })
@@ -53,15 +53,15 @@ export const signup = async (credentials: SignupDto | TemporalSignupDto) => {
   }
 }
 
-interface TemporalUserEntity {
+export interface TemporalUserEntity {
   id: string
   name: string
   temporal: true
 }
 
-interface UserEntity {
-  id: string
+export interface UserEntity {
   email: string
+  id: string
   name?: string
   password: string
 }
@@ -75,7 +75,7 @@ export const authenticate = async (token: string) => {
 export const findAuthUser = async () => {
   await ready()
 
-  const [[user]] = await query<UserEntity | TemporalUserEntity>(`
+  const [[user]] = await query<TemporalUserEntity | UserEntity>(`
     SELECT * FROM user WHERE id = $auth;
   `)
 
