@@ -1,9 +1,9 @@
 import { authenticate, findAuthUser } from '@/database'
 
-import { getToken, removeToken } from '../library/manage-token.ts'
+import { findToken, removeToken } from '../library/manage-token'
 
 export const findAuth = async () => {
-  const token = getToken()
+  const token = findToken()
 
   try {
     if (token) {

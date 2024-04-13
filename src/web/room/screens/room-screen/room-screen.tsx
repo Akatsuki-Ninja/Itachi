@@ -1,3 +1,11 @@
+import { Box } from '@chakra-ui/react'
+
+import { Chat } from '@/web/common'
+
 export const RoomScreen = () => {
-  return <div>RoomScreen</div>
+  return (
+    <Box>
+      <Chat />
+    </Box>
+  )
 }

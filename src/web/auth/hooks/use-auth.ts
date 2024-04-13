@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { findAuth } from '../services/find-auth.ts'
+import { findAuth } from '../services/find-auth'
 
 export const AUTH_QUERY_KEY = 'auth'
 

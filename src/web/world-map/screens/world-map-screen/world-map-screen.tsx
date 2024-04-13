@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { type Coords, Map } from '@/web/common'
 import { useAuth } from '@/web/auth'
 import { type TemporalUserEntity, type UserEntity } from '@/database'
+import { type DefaultEmptyType } from '@/common'
 
 import { UserMarker } from './user-marker.tsx'
 
@@ -17,9 +18,8 @@ type Marker = {
 export const WorldMapScreen = () => {
   const { data: user } = useAuth()
 
-  const [userLocation, setUserLocation] = useState<Coords | null | undefined>(
-    null
-  )
+  const [userLocation, setUserLocation] =
+    useState<DefaultEmptyType<Coords>>(undefined)
   const [markers, setMarkers] = useState<Marker[]>([])
 
   useEffect(() => {

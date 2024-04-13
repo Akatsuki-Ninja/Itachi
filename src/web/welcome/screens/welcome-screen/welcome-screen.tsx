@@ -3,8 +3,8 @@ import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 
 import { useAuth } from '@/web/auth'
-import { ROOM_PATH } from '@/web/core/routes/room-route.ts'
-import { WORLDMAP_PATH } from '@/web/core/routes/worldmap-route.ts'
+import { ROOM_PATH } from '@/web/core/routes/room-route'
+import { WORLDMAP_PATH } from '@/web/core/routes/worldmap-route'
 
 import { EnterChatModal } from './enter-chat-modal.tsx'
 import { WelcomeCard } from './welcome-card.tsx'

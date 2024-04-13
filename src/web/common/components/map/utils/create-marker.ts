@@ -1,18 +1,20 @@
 import { type ReactNode } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
+import { type DefaultEmptyType } from '@/common'
+
 import {
   type Coords,
   google,
   type MapInstance,
   type MarkerLibrary,
-} from './google.ts'
+} from './google'
 
 export type MakerOptions = {
-  content?: null | ReactNode | string | undefined
+  content?: DefaultEmptyType<ReactNode>
   coords: Coords
   map: MapInstance
-  title?: null | ReactNode | string | undefined
+  title?: DefaultEmptyType<ReactNode>
 }
 
 export const createMarker = async ({
