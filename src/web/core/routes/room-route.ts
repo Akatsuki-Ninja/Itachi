@@ -1,6 +1,6 @@
 import { createRoute } from '@tanstack/react-router'
 
-import { RoomScreen } from '@/web/room'
+import { RoomScreen } from '../screens/room-screen'
 
 import { rootRoute } from './app-router'
 

@@ -1,6 +1,6 @@
 import { createRoute } from '@tanstack/react-router'
 
-import { WorldMapScreen } from '@/web/world-map'
+import { WorldMapScreen } from '../screens/world-map-screen'
 
 import { rootRoute } from './app-router'
 
