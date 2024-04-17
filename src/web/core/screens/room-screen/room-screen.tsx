@@ -5,7 +5,7 @@ import { Chat } from '@/web/common'
 export const RoomScreen = () => {
   return (
     <Box>
-      <Chat />
+      <Chat channelId={'to_generate_id'} />
     </Box>
   )
 }

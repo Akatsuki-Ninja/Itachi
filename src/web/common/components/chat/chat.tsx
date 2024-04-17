@@ -1,10 +1,4 @@
 import {
-  Channel as ChannelInstance,
-  ConnectionOpen,
-  DefaultGenerics,
-  StreamChat,
-} from 'stream-chat'
-import {
   Channel,
   ChannelHeader,
   Chat as ChatProvider,
@@ -17,44 +11,44 @@ import 'stream-chat-react/dist/css/v2/index.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { useAuth } from '@/web/auth'
+import { DefaultEmptyType } from '@/common'
 
-const apiKey = 'athncwx6uezf'
+import {
+  type ChatChannel,
+  useChatClient,
+  type UserConnection,
+} from './hooks/use-chat-client.ts'
+import { createChatUserCredentials } from './library/create-chat-user-credentials.ts'
 
-const chatClient = new StreamChat(apiKey)
+type ChatProps = {
+  channelId: string
+}
 
-export const Chat = () => {
+export const Chat = ({ channelId }: ChatProps) => {
   const { data: user } = useAuth()
+
+  const { chatClient, connectUser, joinChannel } = useChatClient()
+  const [channel, setChannel] = useState<DefaultEmptyType<ChatChannel>>()
+  const connectPromiseRef =
+    useRef<DefaultEmptyType<Promise<UserConnection | void>>>()
+
   const chatUser = useMemo(
-    () =>
-      user
-        ? {
-            id: user.id.split(':')[1],
-            name: user.name,
-          }
-        : null,
+    () => (user ? createChatUserCredentials(user) : null),
     [user]
   )
-
-  const [channel, setChannel] = useState<ChannelInstance<DefaultGenerics>>()
-
-  const connectPromiseRef = useRef<
-    Promise<ConnectionOpen<DefaultGenerics> | void> | undefined
-  >(undefined)
 
   useEffect(() => {
     if (!chatUser || connectPromiseRef.current) return
 
-    connectPromiseRef.current = chatClient
-      .connectUser(chatUser, chatClient.devToken(chatUser.id))
-      .then(() =>
-        setChannel(
-          chatClient.channel('messaging', 'to_generate', {
-            members: [chatUser.id],
-            name: 'Talk about React',
-          })
-        )
+    connectPromiseRef.current = connectUser(chatUser).then(() =>
+      setChannel(
+        joinChannel(chatUser, {
+          channelId,
+          title: 'Talk about React',
+        })
       )
-  }, [chatUser])
+    )
+  }, [channelId, chatUser, connectUser, joinChannel])
 
   return (
     <ChatProvider client={chatClient}>

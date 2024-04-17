@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useAuth } from '@/web/auth'
 
 import { ROOM_PATH } from '../../routes/room-route.ts'
-import { WORLDMAP_PATH } from '../../routes/worldmap-route.ts'
+import { WORLD_MAP_PATH } from '../../routes/world-map-route.ts'
 
 import { EnterChatModal } from './enter-chat-modal.tsx'
 import { WelcomeCard } from './welcome-card.tsx'
@@ -30,7 +30,7 @@ export const WelcomeScreen = () => {
   }
 
   const handleMapClick = async () => {
-    await navigate({ to: WORLDMAP_PATH })
+    await navigate({ to: WORLD_MAP_PATH })
   }
 
   const handleClose = () => {

@@ -4,10 +4,10 @@ import { WorldMapScreen } from '../screens/world-map-screen'
 
 import { rootRoute } from './app-router'
 
-export const WORLDMAP_PATH = '/worldmap'
+export const WORLD_MAP_PATH = '/world-map'
 
-export const worldmapRoute = createRoute({
+export const worldMapRoute = createRoute({
   component: WorldMapScreen,
   getParentRoute: () => rootRoute,
-  path: WORLDMAP_PATH,
+  path: WORLD_MAP_PATH,
 })
