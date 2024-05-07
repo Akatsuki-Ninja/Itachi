@@ -1,3 +1,5 @@
 export * from './hooks/use-auth'
 export * from './hooks/use-signup'
-export * from './services/token'
+export * from './services/authenticate'
+export * from './services/find-auth'
+export * from './services/signup'

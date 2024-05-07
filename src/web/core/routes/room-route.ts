@@ -4,7 +4,7 @@ import { RoomScreen } from '../screens/room-screen'
 
 import { rootRoute } from './app-router'
 
-export const ROOM_PATH = '/room'
+export const ROOM_PATH = '/room/$roomId'
 
 export const roomRoute = createRoute({
   component: RoomScreen,

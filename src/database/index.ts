@@ -1,13 +1,15 @@
 export * from './common/services/database'
-export { authenticate } from '@/database/auth/services/authenticate'
+export { authenticate } from './auth/services/authenticate'
 export {
   findAuthUser,
   type TemporalUserEntity,
   type UserEntity,
-} from '@/database/auth/services/find-auth-user'
+} from './auth/services/find-auth-user'
 export {
   signup,
   type SignupCredentials,
   type TemporalSignupCredentials,
-} from '@/database/auth/services/signup'
-export { query } from '@/database/common/services/query'
+} from './auth/services/signup'
+export { cutEntityId } from './common/library/cut-entity-Id'
+export { query } from './common/services/query'
+export { createRoom, type RoomEntity } from './room/services/create-room'
