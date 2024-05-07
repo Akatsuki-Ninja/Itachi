@@ -7,7 +7,7 @@ import {
   type UserResponse,
 } from 'stream-chat'
 
-import { createChatClient } from '../library/create-chat-client.ts'
+import { createChatClient } from '../library/create-chat-client'
 
 export type ChatUser =
   | OwnUserResponse<DefaultGenerics>

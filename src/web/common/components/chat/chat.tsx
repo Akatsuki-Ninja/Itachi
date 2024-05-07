@@ -11,14 +11,14 @@ import 'stream-chat-react/dist/css/v2/index.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { useAuth } from '@/web/auth'
-import { DefaultEmptyType } from '@/common'
+import { type DefaultEmptyType } from '@/common'
 
 import {
   type ChatChannel,
   useChatClient,
   type UserConnection,
-} from './hooks/use-chat-client.ts'
-import { createChatUserCredentials } from './library/create-chat-user-credentials.ts'
+} from './hooks/use-chat-client'
+import { createChatUserCredentials } from './library/create-chat-user-credentials'
 
 type ChatProps = {
   channelId: string

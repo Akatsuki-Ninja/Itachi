@@ -7,7 +7,7 @@ import {
 
 import { signup } from '../services/signup'
 
-import { AUTH_QUERY_KEY } from './use-auth.ts'
+import { AUTH_QUERY_KEY } from './use-auth'
 
 export const useSignup = ({
   onSuccess,

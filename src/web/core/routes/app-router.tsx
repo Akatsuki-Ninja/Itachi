@@ -1,10 +1,10 @@
 import { createRootRoute, createRouter, Outlet } from '@tanstack/react-router'
 
-import { App } from '../components/root/app.tsx'
+import { App } from '../components/root/app'
 
 import { indexRoute } from './index-route'
 import { roomRoute } from './room-route'
-import { worldMapRoute } from './world-map-route.ts'
+import { worldMapRoute } from './world-map-route'
 
 declare module '@tanstack/react-router' {
   interface Register {

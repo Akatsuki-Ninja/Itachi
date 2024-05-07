@@ -4,11 +4,11 @@ import { useState } from 'react'
 
 import { useAuth } from '@/web/auth'
 
-import { ROOM_PATH } from '../../routes/room-route.ts'
-import { WORLD_MAP_PATH } from '../../routes/world-map-route.ts'
+import { ROOM_PATH } from '../../routes/room-route'
+import { WORLD_MAP_PATH } from '../../routes/world-map-route'
 
-import { EnterChatModal } from './enter-chat-modal.tsx'
-import { WelcomeCard } from './welcome-card.tsx'
+import { EnterChatModal } from './enter-chat-modal'
+import { WelcomeCard } from './welcome-card'
 
 export const WelcomeScreen = () => {
   const { data: user } = useAuth()

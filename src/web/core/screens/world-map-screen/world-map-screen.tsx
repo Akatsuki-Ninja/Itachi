@@ -6,7 +6,7 @@ import { useAuth } from '@/web/auth'
 import { type TemporalUserEntity, type UserEntity } from '@/database'
 import { type DefaultEmptyType } from '@/common'
 
-import { UserMarker } from './user-marker.tsx'
+import { UserMarker } from './user-marker'
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyDtGCQDtjV6pABs-8PctcMWAj3ouYPM9vE'
 
