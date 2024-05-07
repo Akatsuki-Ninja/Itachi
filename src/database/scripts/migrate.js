@@ -33,8 +33,8 @@ DEFINE SCOPE temporal SESSION 14d
 `
 ;(async () => {
   await db.connect('http://127.0.0.1:8000/rpc', {
-    namespace: 'main',
     database: 'itachi',
+    namespace: 'main',
   })
 
   await db.query(QUERY)
