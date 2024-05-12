@@ -1,10 +1,10 @@
 import { createRootRoute, createRouter, Outlet } from '@tanstack/react-router'
 
-import { App } from '../components/root/app.tsx'
+import { App } from '../components/root/app'
 
-import { indexRoute } from './index-route.ts'
-import { roomRoute } from './room-route.ts'
-import { worldmapRoute } from './worldmap-route.ts'
+import { indexRoute } from './index-route'
+import { roomRoute } from './room-route'
+import { worldMapRoute } from './world-map-route'
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -20,6 +20,6 @@ export const rootRoute = createRootRoute({
   ),
 })
 
-const routeTree = rootRoute.addChildren([indexRoute, roomRoute, worldmapRoute])
+const routeTree = rootRoute.addChildren([indexRoute, roomRoute, worldMapRoute])
 
 export const router = createRouter({ routeTree })

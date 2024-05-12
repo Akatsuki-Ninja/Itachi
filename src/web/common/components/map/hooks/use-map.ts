@@ -1,10 +1,11 @@
 import { createContext, useContext } from 'react'
 
-import { type MapInstance } from '../utils/google.ts'
+import { type DefaultEmptyType } from '@/common'
 
-export const MapContext = createContext<MapInstance | null | undefined>(
-  undefined
-)
+import { type MapInstance } from '../utils/google'
+
+export const MapContext =
+  createContext<DefaultEmptyType<MapInstance>>(undefined)
 
 export const useMap = () => {
   const context = useContext(MapContext)

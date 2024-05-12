@@ -1,15 +1,17 @@
 import { Box, type SystemStyleObject } from '@chakra-ui/react'
 import { type ReactNode, useEffect, useState } from 'react'
 
+import { type DefaultEmptyType } from '@/common'
+
 import { MapContext } from './hooks/use-map'
 import { createMap } from './utils/create-map'
-import { type Coords, type MapInstance } from './utils/google.ts'
+import { type Coords, type MapInstance } from './utils/google'
 
 type MapProps = {
   apiKey: string
-  center?: Coords | null | undefined
+  center?: DefaultEmptyType<Coords>
   children?: ReactNode
-  zoom?: null | number | undefined
+  zoom?: DefaultEmptyType<number>
 }
 
 const mapSx: SystemStyleObject = {
@@ -17,7 +19,7 @@ const mapSx: SystemStyleObject = {
 }
 
 export const Map = ({ apiKey, center, children, zoom }: MapProps) => {
-  const [map, setMap] = useState<MapInstance | null | undefined>(undefined)
+  const [map, setMap] = useState<DefaultEmptyType<MapInstance>>(undefined)
 
   useEffect(() => {
     createMap({ apiKey, center, zoom }).then(setMap)

@@ -3,21 +3,25 @@ import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 
 import { useAuth } from '@/web/auth'
-import { ROOM_PATH } from '@/web/core/routes/room-route.ts'
-import { WORLDMAP_PATH } from '@/web/core/routes/worldmap-route.ts'
+import { useCreateRoom } from '@/web/room'
 
-import { EnterChatModal } from './enter-chat-modal.tsx'
-import { WelcomeCard } from './welcome-card.tsx'
+import { ROOM_ID_PARAM, ROOM_PATH } from '../../routes/room-route'
+import { WORLD_MAP_PATH } from '../../routes/world-map-route'
+
+import { EnterChatModal } from './enter-chat-modal'
+import { WelcomeCard } from './welcome-card'
 
 export const WelcomeScreen = () => {
-  const { data: user } = useAuth()
   const navigate = useNavigate()
 
-  const [showAuthModal, setShowAuthModal] = useState(false)
+  const { data: user } = useAuth()
+  const { mutate: goToNewChat } = useCreateRoom({
+    onSuccess: async (room) => {
+      await navigate({ to: ROOM_PATH.replace(ROOM_ID_PARAM, room.id) })
+    },
+  })
 
-  const onSuccess = async () => {
-    await navigate({ to: ROOM_PATH })
-  }
+  const [showAuthModal, setShowAuthModal] = useState(false)
 
   const handleChatClick = async () => {
     if (!user) {
@@ -25,11 +29,11 @@ export const WelcomeScreen = () => {
       return
     }
 
-    await onSuccess()
+    goToNewChat()
   }
 
   const handleMapClick = async () => {
-    await navigate({ to: WORLDMAP_PATH })
+    await navigate({ to: WORLD_MAP_PATH })
   }
 
   const handleClose = () => {
@@ -40,7 +44,7 @@ export const WelcomeScreen = () => {
     <>
       <EnterChatModal
         onClose={handleClose}
-        onSuccess={onSuccess}
+        onSuccess={goToNewChat}
         open={showAuthModal}
       />
       <Grid

@@ -4,10 +4,13 @@ const db = new Surreal()
 
 const QUERY = `
 REMOVE TABLE IF EXISTS user;
+REMOVE TABLE IF EXISTS room;
 REMOVE SCOPE IF EXISTS user;
 REMOVE SCOPE IF EXISTS temporal;
 
 DEFINE TABLE user SCHEMALESS
+    PERMISSIONS FULL;
+DEFINE TABLE room SCHEMALESS
     PERMISSIONS FULL;
 
 DEFINE SCOPE user SESSION 14d
@@ -33,8 +36,8 @@ DEFINE SCOPE temporal SESSION 14d
 `
 ;(async () => {
   await db.connect('http://127.0.0.1:8000/rpc', {
-    namespace: 'main',
     database: 'itachi',
+    namespace: 'main',
   })
 
   await db.query(QUERY)

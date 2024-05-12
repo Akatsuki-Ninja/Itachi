@@ -1,6 +1,6 @@
 import { createRoute } from '@tanstack/react-router'
 
-import { WelcomeScreen } from '@/web/common'
+import { WelcomeScreen } from '../screens/welcome-screen'
 
 import { rootRoute } from './app-router'
 

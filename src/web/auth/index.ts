@@ -1,2 +1,5 @@
-export * from './hooks/use-auth.ts'
-export * from './hooks/use-signup.ts'
+export * from './hooks/use-auth'
+export * from './hooks/use-signup'
+export * from './services/authenticate'
+export * from './services/find-auth'
+export * from './services/signup'

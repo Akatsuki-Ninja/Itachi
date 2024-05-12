@@ -29,7 +29,7 @@ export const EnterChatModal = ({
   open,
 }: EnterChatModalProps) => {
   const { mutate: signup } = useSignup({
-    onSuccess: onSuccess,
+    onSuccess,
   })
 
   const sign = async (event: FormEvent) => {

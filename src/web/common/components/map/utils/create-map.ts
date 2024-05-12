@@ -1,11 +1,13 @@
 import { Loader } from '@googlemaps/js-api-loader'
 
+import { type DefaultEmptyType } from '@/common'
+
 import { type Coords, type MapInstance } from './google'
 
 export type MapOptions = {
   apiKey: string
-  center?: Coords | null | undefined
-  zoom?: null | number | undefined
+  center?: DefaultEmptyType<Coords>
+  zoom?: DefaultEmptyType<number>
 }
 
 const DEFAULT_CENTER = { lat: -34.397, lng: 150.644 }
