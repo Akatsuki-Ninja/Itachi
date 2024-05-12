@@ -8,16 +8,12 @@ import {
   Window,
 } from 'stream-chat-react'
 import 'stream-chat-react/dist/css/v2/index.css'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useAuth } from '@/web/auth'
 import { type DefaultEmptyType } from '@/common'
 
-import {
-  type ChatChannel,
-  useChatClient,
-  type UserConnection,
-} from './hooks/use-chat-client'
+import { type ChatChannel, useChatClient } from './hooks/use-chat-client'
 import { createChatUserCredentials } from './library/create-chat-user-credentials'
 
 type ChatProps = {
@@ -27,28 +23,30 @@ type ChatProps = {
 export const Chat = ({ channelId }: ChatProps) => {
   const { data: user } = useAuth()
 
-  const { chatClient, connectUser, joinChannel } = useChatClient()
-  const [channel, setChannel] = useState<DefaultEmptyType<ChatChannel>>()
-  const connectPromiseRef =
-    useRef<DefaultEmptyType<Promise<UserConnection | void>>>()
-
   const chatUser = useMemo(
     () => (user ? createChatUserCredentials(user) : null),
     [user]
   )
 
-  useEffect(() => {
-    if (!chatUser || connectPromiseRef.current) return
+  const { chatClient, connectUser, joinChannel } = useChatClient()
+  const [channel, setChannel] = useState<DefaultEmptyType<ChatChannel>>()
 
-    connectPromiseRef.current = connectUser(chatUser).then(() =>
-      setChannel(
-        joinChannel(chatUser, {
-          channelId,
-          title: 'Talk about React',
-        })
-      )
+  const setupChat = useCallback(async () => {
+    if (!chatUser) return
+
+    await connectUser(chatUser)
+
+    setChannel(
+      joinChannel(chatUser, {
+        channelId,
+        title: 'Talk about React',
+      })
     )
   }, [channelId, chatUser, connectUser, joinChannel])
+
+  useEffect(() => {
+    setupChat().catch(console.error)
+  }, [setupChat])
 
   return (
     <ChatProvider client={chatClient}>

@@ -6,9 +6,13 @@ import {
 
 import { type TemporalUserEntity, type UserEntity } from '@/database'
 
+export type ChatUser =
+  | OwnUserResponse<DefaultGenerics>
+  | UserResponse<DefaultGenerics>
+
 export const createChatUserCredentials = (
   user: TemporalUserEntity | UserEntity
-): OwnUserResponse<DefaultGenerics> | UserResponse<DefaultGenerics> => ({
+): ChatUser => ({
   id: user.id.split(':')[1],
   name: user.name,
 })

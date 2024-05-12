@@ -3,29 +3,34 @@ import {
   type Channel,
   type ConnectionOpen,
   type DefaultGenerics,
-  type OwnUserResponse,
-  type UserResponse,
 } from 'stream-chat'
 
-import { createChatClient } from '../library/create-chat-client'
+import type { DefaultEmptyType } from '@/common'
 
-export type ChatUser =
-  | OwnUserResponse<DefaultGenerics>
-  | UserResponse<DefaultGenerics>
+import { createChatClient } from '../library/create-chat-client'
+import { ChatUser } from '../library/create-chat-user-credentials'
+
 export type UserConnection = ConnectionOpen<DefaultGenerics>
 export type ChatChannel = Channel<DefaultGenerics>
 
 export const useChatClient = () => {
   const { current: chatClient } = useRef(createChatClient())
+  const userConnectionRef = useRef<DefaultEmptyType<UserConnection | void>>()
+  const channelRef = useRef<DefaultEmptyType<ChatChannel>>()
 
   const connectUser = useCallback(
     async (user: ChatUser): Promise<UserConnection> => {
+      if (userConnectionRef.current) return userConnectionRef.current
+
       const connection = await chatClient.connectUser(
         user,
         chatClient.devToken(user.id)
       )
 
       if (!connection) throw new Error('Failed to connect user')
+
+      // TODO: could be issue when we would like to reconnect user.
+      userConnectionRef.current = connection
 
       return connection
     },
@@ -36,11 +41,22 @@ export const useChatClient = () => {
     (
       user: ChatUser,
       { channelId, title }: { channelId: string; title?: string }
-    ): ChatChannel =>
-      chatClient.channel('messaging', channelId, {
+    ): ChatChannel => {
+      if (channelRef.current) return channelRef.current
+
+      const channel = chatClient.channel('messaging', channelId, {
         members: [user.id], // TODO: do we need to fetch other members?
         name: title ?? `Room #${channelId}`,
-      }),
+      })
+
+      /**
+       * TODO: could be issue when we would like to connect to another channel.
+       * For example user create new channel or go to another channel.
+       */
+      channelRef.current = channel
+
+      return channel
+    },
     [chatClient]
   )
 
