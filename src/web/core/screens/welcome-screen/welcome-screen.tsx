@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useAuth } from '@/web/auth'
 import { useCreateRoom } from '@/web/room'
 
-import { ROOM_PATH } from '../../routes/room-route'
+import { ROOM_ID_PARAM, ROOM_PATH } from '../../routes/room-route'
 import { WORLD_MAP_PATH } from '../../routes/world-map-route'
 
 import { EnterChatModal } from './enter-chat-modal'
@@ -17,7 +17,7 @@ export const WelcomeScreen = () => {
   const { data: user } = useAuth()
   const { mutate: goToNewChat } = useCreateRoom({
     onSuccess: async (room) => {
-      await navigate({ to: ROOM_PATH.replace('$roomId', room.id) })
+      await navigate({ to: ROOM_PATH.replace(ROOM_ID_PARAM, room.id) })
     },
   })
 

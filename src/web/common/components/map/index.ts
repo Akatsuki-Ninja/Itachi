@@ -1,5 +1,5 @@
 export { Map } from './map.tsx'
 export { Marker } from './marker.tsx'
-export * from './utils/google.ts'
+export * from './utils/google'
 export type { MapOptions } from './utils/create-map'
 export type { MakerOptions } from './utils/create-marker'

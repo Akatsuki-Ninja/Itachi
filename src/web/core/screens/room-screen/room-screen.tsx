@@ -8,11 +8,11 @@ import { roomRoute } from '../../routes/room-route'
 export const RoomScreen = () => {
   const { roomId } = roomRoute.useParams()
 
-  const recordId = cutEntityId(roomId)
+  const entityId = cutEntityId(roomId)
 
   return (
     <Box>
-      <Chat channelId={recordId} />
+      <Chat channelId={entityId} />
     </Box>
   )
 }
