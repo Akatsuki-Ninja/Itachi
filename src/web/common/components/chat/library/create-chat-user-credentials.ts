@@ -4,7 +4,11 @@ import {
   type UserResponse,
 } from 'stream-chat'
 
-import { type TemporalUserEntity, type UserEntity } from '@/database'
+import {
+  cutEntityId,
+  type TemporalUserEntity,
+  type UserEntity,
+} from '@/database'
 
 export type ChatUser =
   | OwnUserResponse<DefaultGenerics>
@@ -13,6 +17,6 @@ export type ChatUser =
 export const createChatUserCredentials = (
   user: TemporalUserEntity | UserEntity
 ): ChatUser => ({
-  id: user.id.split(':')[1],
+  id: cutEntityId(user.id),
   name: user.name,
 })
