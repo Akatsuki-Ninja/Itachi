@@ -1,7 +1,7 @@
 import { StreamChat } from 'stream-chat'
 
-const apiKey = 'athncwx6uezf'
+import { API_KEY } from './api-key'
 
 export const createChatClient = () => {
-  return new StreamChat(apiKey)
+  return new StreamChat(API_KEY)
 }

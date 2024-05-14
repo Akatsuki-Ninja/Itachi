@@ -14,7 +14,7 @@ export type ChatUser =
   | OwnUserResponse<DefaultGenerics>
   | UserResponse<DefaultGenerics>
 
-export const createChatUserCredentials = (
+export const createChatUserSignature = (
   user: TemporalUserEntity | UserEntity
 ): ChatUser => ({
   id: cutEntityId(user.id),

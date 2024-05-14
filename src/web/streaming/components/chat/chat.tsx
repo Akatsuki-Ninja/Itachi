@@ -3,7 +3,7 @@ import 'stream-chat-react/dist/css/v2/index.css'
 import { useEffect } from 'react'
 import { Alert, AlertIcon } from '@chakra-ui/react'
 
-import { Messenger } from './Messenger'
+import { Messenger } from './messenger.tsx'
 import { useChatUser } from './hooks/use-chat-user'
 import { useChat } from './hooks/use-chat'
 

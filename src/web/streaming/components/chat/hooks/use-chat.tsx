@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react'
 import type { DefaultEmptyType } from '@/common'
 import { useProgressStatus } from '@/web/common'
 
-import type { ChatUser } from '../library/create-chat-user-credentials'
+import type { ChatUser } from '../../../services/create-chat-user-signature'
 
 import { type ChatChannel, useChatClient } from './use-chat-client'
 

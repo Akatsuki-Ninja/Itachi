@@ -5,8 +5,8 @@ import {
   type DefaultGenerics,
 } from 'stream-chat'
 
-import { createChatClient } from '../library/create-chat-client'
-import { ChatUser } from '../library/create-chat-user-credentials'
+import { createChatClient } from '../../../services/create-chat-client'
+import { ChatUser } from '../../../services/create-chat-user-signature'
 
 export type UserConnection = ConnectionOpen<DefaultGenerics>
 export type ChatChannel = Channel<DefaultGenerics>

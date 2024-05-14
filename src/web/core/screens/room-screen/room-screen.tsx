@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 
-import { Chat } from '@/web/common'
+import { Chat } from '@/web/streaming'
 import { cutEntityId } from '@/database'
 
 import { roomRoute } from '../../routes/room-route'
