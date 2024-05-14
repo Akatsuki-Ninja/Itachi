@@ -1,25 +1,34 @@
-import {
-  StreamCall,
-  StreamVideo,
-  StreamVideoClient,
-  User,
-} from '@stream-io/video-react-sdk'
-import { Box } from '@chakra-ui/react'
+import { StreamCall, StreamVideo } from '@stream-io/video-react-sdk'
+import { useEffect } from 'react'
 
-const apiKey = 'your-api-key'
-const userId = 'user-id'
-const token = 'authentication-token'
-const user: User = { id: userId }
+import type { ChatUserType } from '../../types/chat-user-type'
 
-const client = new StreamVideoClient({ apiKey, token, user })
-const call = client.call('default', 'my-first-call')
-call.join({ create: true })
+import { useVideoClient } from './hooks/use-video-client'
+import { Participant } from './participant'
 
-export const VideoCall = () => {
+export const VideoCall = ({
+  callId,
+  token,
+  user,
+}: {
+  callId: string
+  token: string
+  user: ChatUserType
+}) => {
+  const { call, client } = useVideoClient({
+    callId,
+    token,
+    user: user,
+  })
+
+  useEffect(() => {
+    call.join({ create: true }).catch(console.error)
+  }, [call])
+
   return (
     <StreamVideo client={client}>
       <StreamCall call={call}>
-        <Box>Controls</Box>
+        <Participant />
       </StreamCall>
     </StreamVideo>
   )

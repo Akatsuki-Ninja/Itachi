@@ -1,2 +1,2 @@
-export * from './components/chat'
-export * from './components/video-call'
+export * from './components/stream'
+export * from './types/chat-user-type'

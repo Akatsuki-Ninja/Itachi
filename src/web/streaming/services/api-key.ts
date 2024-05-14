@@ -1,1 +1,1 @@
-export const API_KEY = 'athncwx6uezf'
+export const STREAMING_API_KEY = 'athncwx6uezf'

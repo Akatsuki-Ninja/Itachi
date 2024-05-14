@@ -1,22 +1,14 @@
 import {
-  type DefaultGenerics,
-  type OwnUserResponse,
-  type UserResponse,
-} from 'stream-chat'
-
-import {
   cutEntityId,
   type TemporalUserEntity,
   type UserEntity,
 } from '@/database'
-
-export type ChatUser =
-  | OwnUserResponse<DefaultGenerics>
-  | UserResponse<DefaultGenerics>
+import type { ChatUserType } from '@/web/streaming'
 
 export const createChatUserSignature = (
   user: TemporalUserEntity | UserEntity
-): ChatUser => ({
+): ChatUserType => ({
+  email: 'email' in user ? user.email : undefined,
   id: cutEntityId(user.id),
   name: user.name,
 })
