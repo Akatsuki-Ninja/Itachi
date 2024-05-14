@@ -1,18 +1,16 @@
-import { Box } from '@chakra-ui/react'
+import { Stream } from '@/web/streaming'
 
-import { Chat } from '@/web/common'
-import { cutEntityId } from '@/database'
-
-import { roomRoute } from '../../routes/room-route'
+import { useChatUserFromAuth } from './hooks/use-chat-user'
+import { useRoomIdParam } from './hooks/use-room-id-param.ts'
 
 export const RoomScreen = () => {
-  const { roomId } = roomRoute.useParams()
-
-  const entityId = cutEntityId(roomId)
+  const user = useChatUserFromAuth()
+  const roomId = useRoomIdParam()
 
   return (
-    <Box>
-      <Chat channelId={entityId} />
-    </Box>
+    <Stream
+      id={roomId}
+      user={user}
+    />
   )
 }
