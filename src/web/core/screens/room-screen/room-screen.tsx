@@ -1,16 +1,20 @@
-import { useChatUserFromAuth } from './hooks/use-chat-user'
+import { useMemo } from 'react'
+
+import { useRequiredAuth } from '@/web/auth'
+import { createChatUserSignature } from '@/web/room'
+
 import { useRoomIdParam } from './hooks/use-room-id-param'
 import { Stream } from './stream'
 
 export const RoomScreen = () => {
-  // TODO: if no user, show popup to register as on WorldCard
-  const user = useChatUserFromAuth()
   const roomId = useRoomIdParam()
+  const user = useRequiredAuth()
+  const chatUser = useMemo(() => createChatUserSignature(user), [user])
 
   return (
     <Stream
       id={roomId}
-      user={user}
+      user={chatUser}
     />
   )
 }

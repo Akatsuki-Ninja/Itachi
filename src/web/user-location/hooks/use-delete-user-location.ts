@@ -1,15 +1,15 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { createRoom, type RoomEntity } from '@/core'
+import { deleteUserLocation } from '@/core'
 import { useLogTanQuery } from '@/web/common'
 
-export const useCreateRoom = ({
+export const useDeleteUserLocation = ({
   onSuccess,
 }: {
-  onSuccess?: (room: RoomEntity) => void
+  onSuccess?: () => void
 } = {}) => {
   const mutation = useMutation({
-    mutationFn: createRoom,
+    mutationFn: deleteUserLocation,
     onSuccess,
   })
 

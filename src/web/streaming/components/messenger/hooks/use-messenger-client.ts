@@ -1,7 +1,8 @@
 import { useCreateChatClient } from 'stream-chat-react'
 
+import type { ChatUserType } from '@/web/streaming'
+
 import { STREAMING_API_KEY } from '../../../services/api-key'
-import type { ChatUserType } from '../../../types/chat-user-type'
 
 export const useMessengerClient = ({
   token,

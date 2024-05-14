@@ -33,5 +33,5 @@ export const isRegularUser = (
 const isTemporalCredentials = (
   credentials: SignupCredentials | TemporalSignupCredentials
 ): credentials is TemporalSignupCredentials => {
-  return UserScope.temporal in credentials
+  return !('email' in credentials)
 }

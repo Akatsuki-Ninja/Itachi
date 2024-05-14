@@ -2,6 +2,8 @@ import { getDatabase } from '@/core'
 
 export type LiveQueryClosureReason = 'QUERY_KILLED' | 'SOCKET_CLOSED'
 
+export type LiveAction = 'CLOSE' | 'CREATE' | 'DELETE' | 'UPDATE'
+
 export type LiveQueryResponse<
   T extends Record<string, unknown> = Record<string, unknown>,
 > =

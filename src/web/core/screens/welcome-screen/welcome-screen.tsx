@@ -13,7 +13,7 @@ import { WelcomeCard } from './welcome-card'
 export const WelcomeScreen = () => {
   const navigate = useNavigate()
 
-  const { data: user } = useAuth({ required: false })
+  const { data: user } = useAuth()
 
   const { mutate: goToNewChat } = useCreateRoom({
     onSuccess: async (room) => {

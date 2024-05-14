@@ -6,6 +6,7 @@ import { type DefaultEmptyType } from '@/common'
 import { type Coords, type MapInstance, type MarkerLibrary } from './google'
 
 export type MakerOptions = {
+  color?: string
   content?: DefaultEmptyType<ReactNode>
   coords: Coords
   map: MapInstance
@@ -13,6 +14,7 @@ export type MakerOptions = {
 }
 
 export const createMarker = async ({
+  color,
   content,
   coords,
   map,
@@ -29,6 +31,7 @@ export const createMarker = async ({
   titleElement.innerHTML = renderToStaticMarkup(title)
 
   const pinGlyph = new window.google.maps.marker.PinElement({
+    background: color,
     glyph: titleElement,
     glyphColor: 'white',
   })
@@ -48,4 +51,12 @@ export const createMarker = async ({
     infoWindow.setContent(contentElement)
     infoWindow.open(map, marker)
   })
+
+  return marker
+}
+
+export const removeMarker = (
+  marker: google.maps.marker.AdvancedMarkerElement
+) => {
+  marker.remove()
 }

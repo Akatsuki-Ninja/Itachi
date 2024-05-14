@@ -7,10 +7,10 @@ import {
 import '@stream-io/video-react-sdk/dist/css/styles.css'
 import { useEffect } from 'react'
 
-import type { ChatUserType } from '../../types/chat-user-type'
+import type { ChatUserType } from '@/web/streaming'
 
 import { useVideoClient } from './hooks/use-video-client'
-import { Participants } from './participants.tsx'
+import { Participants } from './participants'
 
 export const VideoCall = ({
   callId,

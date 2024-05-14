@@ -1,5 +1,5 @@
 import { getDatabase } from '@/core'
-import { getScopeFromCredentials } from '@/core/auth/library/get-user-scope.ts'
+import { getScopeFromCredentials } from '@/core/auth/library/get-user-scope'
 
 export type TemporalSignupCredentials = {
   name?: string

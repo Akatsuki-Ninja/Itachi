@@ -1,8 +1,13 @@
-import { findAuthUser } from '@/core'
-import { authenticate } from '@/web/auth'
+import { authenticate, findAuthUser } from '@/core'
+
+import { findToken } from '../library/manage-token'
 
 export const findAuth = async () => {
-  if (await authenticate({ required: false })) {
+  const token = findToken()
+
+  if (token) {
+    await authenticate(token)
+
     return await findAuthUser()
   }
 

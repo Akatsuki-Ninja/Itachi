@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { type SignupCredentials, type TemporalSignupCredentials } from '@/core'
 import { AUTH_QUERY_KEY, signup } from '@/web/auth'
+import { useLogTanQuery } from '@/web/common'
 
 export const useSignup = ({
   onSuccess,
@@ -10,7 +11,7 @@ export const useSignup = ({
 } = {}) => {
   const queryClient = useQueryClient()
 
-  return useMutation({
+  const mutation = useMutation({
     mutationFn: async (
       credentials: SignupCredentials | TemporalSignupCredentials
     ) => {
@@ -22,4 +23,8 @@ export const useSignup = ({
     },
     onSuccess,
   })
+
+  useLogTanQuery(mutation)
+
+  return mutation
 }

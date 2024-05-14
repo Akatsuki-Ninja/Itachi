@@ -1,51 +1,29 @@
 import { Box } from '@chakra-ui/react'
-import { useEffect, useMemo, useState } from 'react'
-import {
-  useListenUsersLocation,
-  useSaveAuthUserLocation,
-} from 'src/web/user-location'
+import { useMemo } from 'react'
 
-import type { UserEntityLike } from '@/core'
-import { useGetFetchedAuth } from '@/web/auth'
-import { type Coords, Map, useLocation } from '@/web/common'
-import { getUserPreview } from '@/web/user'
+import { useRequiredAuth } from '@/web/auth'
+import { Map } from '@/web/common'
+import { useLiveUsersLocations } from '@/web/user-location'
 
+import { createUsersMarkers } from './create-users-markers'
+import { useLiveAuthUserLocation } from './use-live-auth-user-location'
 import { UserMarker } from './user-marker'
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyCUZf3em7J8q8WkWOfjJ1B9c5N1aKrDiVI'
 
-type Marker = {
-  coords: Coords
-  user: UserEntityLike
-}
-
 export const WorldMapScreen = () => {
-  // TODO: if no user, show popup to register as on WorldCard
-  const user = useGetFetchedAuth()
-  const userPreview = useMemo(() => getUserPreview(user), [user])
+  const { location } = useLiveAuthUserLocation()
 
-  const { location } = useLocation()
-  const [markers, setMarkers] = useState<Marker[]>([])
-  const { mutate: setAuthUserPosition } = useSaveAuthUserLocation()
-
-  useListenUsersLocation()
-
-  useEffect(() => {
-    if (!location) return
-
-    setAuthUserPosition(location)
-  }, [setAuthUserPosition, user, location])
-
-  useEffect(() => {
-    if (!location) return
-
-    setMarkers([
-      {
-        coords: location,
-        user: userPreview,
-      },
-    ])
-  }, [location, userPreview])
+  const { liveLocations } = useLiveUsersLocations()
+  const user = useRequiredAuth()
+  const markers = useMemo(
+    () =>
+      createUsersMarkers({
+        currentUser: user,
+        locations: liveLocations,
+      }),
+    [liveLocations, user]
+  )
 
   return (
     <Box
