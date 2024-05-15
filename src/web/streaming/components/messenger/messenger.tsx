@@ -1,7 +1,5 @@
 import {
-  Channel,
   ChannelHeader,
-  ChannelList,
   Chat,
   MessageInput,
   MessageList,
@@ -12,8 +10,8 @@ import 'stream-chat-react/dist/css/v2/index.css'
 
 import type { ChatUserType } from '../../types/chat-user-type'
 
-import { useChannelParams } from './hooks/use-channel-params'
 import { useMessengerClient } from './hooks/use-messenger-client'
+import { Channel } from './channel'
 
 export const Messenger = ({
   channelId,
@@ -24,25 +22,18 @@ export const Messenger = ({
   token: string
   user: ChatUserType
 }) => {
-  const { client, isResolved } = useMessengerClient({
-    channelId,
+  const { client } = useMessengerClient({
     token,
     user,
   })
 
-  const { filters, sort } = useChannelParams({ channelId })
-
-  if (!client || !isResolved) return null
+  if (!client) return null
 
   return (
     <Chat client={client}>
-      <ChannelList
-        filters={filters}
-        sort={sort}
-      />
-      <Channel>
+      <Channel channelId={channelId}>
         <Window>
-          <ChannelHeader />
+          <ChannelHeader title={user.name} />
           <MessageList />
           <MessageInput />
         </Window>
