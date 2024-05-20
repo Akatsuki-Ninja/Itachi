@@ -17,15 +17,18 @@ export const Stream = ({ id, user }: { id: string; user: ChatUserType }) => {
   }
 
   return (
-    <Flex>
-      <Box w={'50%'}>
+    <Flex minH={'100vh'}>
+      <Box>
         <VideoCall
           callId={id}
           token={token}
           user={user}
         />
       </Box>
-      <Box w={'50%'}>
+      <Box
+        flexShrink={0}
+        w={'300px'}
+      >
         <Messenger
           channelId={id}
           token={token}

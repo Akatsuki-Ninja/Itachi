@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import type { ChatUserType } from '../../types/chat-user-type'
 
 import { useVideoClient } from './hooks/use-video-client'
-import { Participant } from './participant'
+import { Participants } from './participants.tsx'
 
 export const VideoCall = ({
   callId,
@@ -28,7 +28,7 @@ export const VideoCall = ({
   return (
     <StreamVideo client={client}>
       <StreamCall call={call}>
-        <Participant />
+        <Participants />
       </StreamCall>
     </StreamVideo>
   )
