@@ -1,10 +1,10 @@
 import { Box } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
-import { type Coords, Map } from '@/web/common'
-import { useAuth } from '@/web/auth'
-import { type TemporalUserEntity, type UserEntity } from '@/database'
 import { type DefaultEmptyType } from '@/common'
+import { type TemporalUserEntity, type UserEntity } from '@/database'
+import { useAuth } from '@/web/auth'
+import { type Coords, Map } from '@/web/common'
 
 import { UserMarker } from './user-marker'
 

@@ -1,4 +1,9 @@
-import { StreamCall, StreamVideo } from '@stream-io/video-react-sdk'
+import {
+  CallControls,
+  StreamCall,
+  StreamVideo,
+} from '@stream-io/video-react-sdk'
+import '@stream-io/video-react-sdk/dist/css/styles.css'
 import { useEffect } from 'react'
 
 import type { ChatUserType } from '../../types/chat-user-type'
@@ -28,6 +33,7 @@ export const VideoCall = ({
   return (
     <StreamVideo client={client}>
       <StreamCall call={call}>
+        <CallControls />
         <Participants />
       </StreamCall>
     </StreamVideo>

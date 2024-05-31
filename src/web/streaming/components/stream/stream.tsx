@@ -1,11 +1,11 @@
-import { useState } from 'react'
 import { Box, Flex } from '@chakra-ui/react'
+import { useState } from 'react'
 
 import { createChatToken, type DefaultEmptyType } from '@/common'
 
+import { ChatUserType } from '../../types/chat-user-type'
 import { Messenger } from '../messenger'
 import { VideoCall } from '../video-call'
-import { ChatUserType } from '../../types/chat-user-type'
 
 export const Stream = ({ id, user }: { id: string; user: ChatUserType }) => {
   const [token, setToken] = useState<DefaultEmptyType<string>>(null)
