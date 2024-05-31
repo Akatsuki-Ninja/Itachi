@@ -9,11 +9,11 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:prettier/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
-    "plugin:perfectionist/recommended-alphabetical"
+    'plugin:perfectionist/recommended-alphabetical',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', 'import', 'unused-imports', '@tanstack/query', 'perfectionist'],
+  plugins: ['react-refresh', 'unused-imports', '@tanstack/query', 'perfectionist'],
   settings: {
     react: {
       version: 'detect',
@@ -45,7 +45,7 @@ module.exports = {
       'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
       'newlines-between': 'always',
       'internal-pattern': [
-          '@/**',
+        '@/**',
       ],
     }],
     'unused-imports/no-unused-imports': 2,
