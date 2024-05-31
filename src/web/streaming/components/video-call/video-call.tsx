@@ -1,6 +1,7 @@
 import {
   CallControls,
   StreamCall,
+  StreamTheme,
   StreamVideo,
 } from '@stream-io/video-react-sdk'
 import '@stream-io/video-react-sdk/dist/css/styles.css'
@@ -32,10 +33,12 @@ export const VideoCall = ({
 
   return (
     <StreamVideo client={client}>
-      <StreamCall call={call}>
-        <CallControls />
-        <Participants />
-      </StreamCall>
+      <StreamTheme>
+        <StreamCall call={call}>
+          <CallControls />
+          <Participants />
+        </StreamCall>
+      </StreamTheme>
     </StreamVideo>
   )
 }

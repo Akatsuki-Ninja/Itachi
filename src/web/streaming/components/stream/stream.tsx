@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import { createChatToken, type DefaultEmptyType } from '@/common'
 
-import { ChatUserType } from '../../types/chat-user-type'
+import { type ChatUserType } from '../../types/chat-user-type'
 import { Messenger } from '../messenger'
 import { VideoCall } from '../video-call'
 
