@@ -5,7 +5,7 @@ export type RoomEntity = {
 }
 
 export const createRoom = async () => {
-  const [[room]] = await query<RoomEntity>(`CREATE room;`)
+  const [[roomEntity]] = await query<RoomEntity>(`CREATE room;`)
 
-  return room
+  return roomEntity
 }

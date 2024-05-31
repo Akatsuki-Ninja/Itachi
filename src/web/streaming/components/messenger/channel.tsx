@@ -1,5 +1,5 @@
-import { Channel as StreamChannel } from 'stream-chat-react'
 import type { ReactNode } from 'react'
+import { Channel as StreamChannel } from 'stream-chat-react'
 
 import { useInitializeChannel } from './hooks/use-initialize-channel'
 

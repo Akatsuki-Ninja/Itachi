@@ -14,9 +14,9 @@ export type UserEntity = {
 }
 
 export const findAuthUser = async () => {
-  const [[user]] = await query<TemporalUserEntity | UserEntity>(`
+  const [[userEntity]] = await query<TemporalUserEntity | UserEntity>(`
     SELECT * FROM user WHERE id = $auth;
   `)
 
-  return user
+  return userEntity
 }

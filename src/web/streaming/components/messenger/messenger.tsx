@@ -10,8 +10,8 @@ import 'stream-chat-react/dist/css/v2/index.css'
 
 import type { ChatUserType } from '../../types/chat-user-type'
 
-import { useMessengerClient } from './hooks/use-messenger-client'
 import { Channel } from './channel'
+import { useMessengerClient } from './hooks/use-messenger-client'
 
 export const Messenger = ({
   channelId,

@@ -1,7 +1,7 @@
 import { StreamVideoClient } from '@stream-io/video-react-sdk'
 
-import { ChatUserType } from '../../../types/chat-user-type'
 import { STREAMING_API_KEY } from '../../../services/api-key'
+import { ChatUserType } from '../../../types/chat-user-type'
 
 export const createVideoClient = ({
   token,

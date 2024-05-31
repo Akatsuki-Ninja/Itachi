@@ -1,5 +1,5 @@
-import { ParticipantView, useCallStateHooks } from '@stream-io/video-react-sdk'
 import { Box, Flex } from '@chakra-ui/react'
+import { ParticipantView, useCallStateHooks } from '@stream-io/video-react-sdk'
 
 export const Participants = () => {
   const { useParticipants } = useCallStateHooks()

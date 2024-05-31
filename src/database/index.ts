@@ -12,4 +12,9 @@ export {
 } from './auth/services/signup'
 export { cutEntityId } from './common/library/cut-entity-Id'
 export { query } from './common/services/query'
+export {
+  setAuthUserPosition,
+  type UserPosition,
+  type UserPositionEntity,
+} from './map/services/set-auth-user-position'
 export { createRoom, type RoomEntity } from './room/services/create-room'

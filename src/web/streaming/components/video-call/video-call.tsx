@@ -35,8 +35,8 @@ export const VideoCall = ({
     <StreamVideo client={client}>
       <StreamTheme>
         <StreamCall call={call}>
-          <CallControls />
           <Participants />
+          <CallControls />
         </StreamCall>
       </StreamTheme>
     </StreamVideo>

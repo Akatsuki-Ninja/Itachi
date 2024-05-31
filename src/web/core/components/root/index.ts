@@ -1,1 +1,1 @@
-export { Root } from './root.tsx'
+export { Root } from './root'

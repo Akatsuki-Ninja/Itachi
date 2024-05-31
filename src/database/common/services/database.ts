@@ -17,6 +17,10 @@ export const ready = async () => {
   }
 }
 
+export const disconnect = async () => {
+  await database.close()
+}
+
 export const getDatabase = async () => {
   await ready()
 

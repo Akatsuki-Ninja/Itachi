@@ -5,6 +5,7 @@ import { type DefaultEmptyType } from '@/common'
 import { type TemporalUserEntity, type UserEntity } from '@/database'
 import { useAuth } from '@/web/auth'
 import { type Coords, Map } from '@/web/common'
+import { useSetAuthUserPosition } from '@/web/world-map'
 
 import { UserMarker } from './user-marker'
 
@@ -17,6 +18,9 @@ type Marker = {
 
 export const WorldMapScreen = () => {
   const { data: user } = useAuth()
+  const { mutate: setAuthUserPosition } = useSetAuthUserPosition({
+    onSuccess: console.info,
+  })
 
   const [userLocation, setUserLocation] =
     useState<DefaultEmptyType<Coords>>(undefined)
@@ -27,6 +31,11 @@ export const WorldMapScreen = () => {
 
     const watchId = navigator.geolocation.watchPosition(
       ({ coords: { latitude: lat, longitude: lng } }) => {
+        setAuthUserPosition({
+          lat,
+          lng,
+        })
+
         setUserLocation({
           lat,
           lng,
@@ -48,14 +57,14 @@ export const WorldMapScreen = () => {
       navigator.geolocation.clearWatch(watchId)
       setMarkers([])
     }
-  }, [user])
+  }, [setAuthUserPosition, user])
 
   return (
     <Box
       h={'100vh'}
       w={'100vw'}
     >
-      {userLocation && (
+      {userLocation ? (
         <Map
           apiKey={GOOGLE_MAPS_API_KEY}
           center={userLocation}
@@ -68,7 +77,7 @@ export const WorldMapScreen = () => {
             />
           ))}
         </Map>
-      )}
+      ) : null}
     </Box>
   )
 }

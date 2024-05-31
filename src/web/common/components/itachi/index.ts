@@ -1,1 +1,1 @@
-export { Itachi } from './itachi.tsx'
+export { Itachi } from './itachi'
