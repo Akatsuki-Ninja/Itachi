@@ -11,20 +11,20 @@ export {
   type SignupCredentials,
   type TemporalSignupCredentials,
 } from './auth/services/signup'
-export { cutEntityId } from './common/library/cut-entity-Id'
+export { cutEntityId } from './database/library/cut-entity-Id'
 export {
   connect,
   disconnect,
   getDatabase,
   ready,
-} from './common/services/database'
-export { kill } from './common/services/kill'
-export { liveQuery } from './common/services/live-query'
-export { query } from './common/services/query'
-export { listenUsersLocation } from './map/services/listen-users-location'
+} from './database/services/database'
+export { kill } from './database/services/kill'
+export { liveQuery } from './database/services/live-query'
+export { query } from './database/services/query'
+export { createRoom, type RoomEntity } from './room/services/create-room'
+export { listenUsersLocation } from './user-location/services/listen-users-location'
 export {
   setAuthUserLocation,
   type UserLocation,
   type UserLocationEntity,
-} from './map/services/set-auth-user-location'
-export { createRoom, type RoomEntity } from './room/services/create-room'
+} from './user-location/services/set-auth-user-location'

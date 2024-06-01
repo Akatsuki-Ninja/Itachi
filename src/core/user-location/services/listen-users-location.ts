@@ -1,4 +1,4 @@
-import { liveQuery, query } from '@/database'
+import { liveQuery, query } from '@/core'
 
 const QUERY = 'LIVE SELECT * FROM userLocation;'
 

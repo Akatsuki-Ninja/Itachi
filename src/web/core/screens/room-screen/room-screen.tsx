@@ -1,7 +1,6 @@
-import { Stream } from '@/web/streaming'
-
 import { useChatUserFromAuth } from './hooks/use-chat-user'
 import { useRoomIdParam } from './hooks/use-room-id-param'
+import { Stream } from './stream'
 
 export const RoomScreen = () => {
   const user = useChatUserFromAuth()

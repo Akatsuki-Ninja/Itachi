@@ -1,7 +1,7 @@
 import { Icon } from '@chakra-ui/react'
 import { FaRegUserCircle } from 'react-icons/fa'
 
-import { type TemporalUserEntity, type UserEntity } from '@/database'
+import { type TemporalUserEntity, type UserEntity } from '@/core'
 import { type Coords, Marker } from '@/web/common'
 
 type UserMarkerProps = {

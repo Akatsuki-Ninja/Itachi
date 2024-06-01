@@ -1,13 +1,13 @@
 import { Box } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-
-import { type TemporalUserEntity, type UserEntity } from '@/database'
-import { useAuth } from '@/web/auth'
-import { type Coords, Map, useLocation } from '@/web/common'
 import {
   useListenUsersLocation,
   useSaveAuthUserLocation,
-} from '@/web/world-map'
+} from 'src/web/user-location'
+
+import { type TemporalUserEntity, type UserEntity } from '@/core'
+import { useAuth } from '@/web/auth'
+import { type Coords, Map, useLocation } from '@/web/common'
 
 import { UserMarker } from './user-marker'
 

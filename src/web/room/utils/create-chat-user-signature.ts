@@ -1,8 +1,4 @@
-import {
-  cutEntityId,
-  type TemporalUserEntity,
-  type UserEntity,
-} from '@/database'
+import { cutEntityId, type TemporalUserEntity, type UserEntity } from '@/core'
 import type { ChatUserType } from '@/web/streaming'
 
 export const createChatUserSignature = (

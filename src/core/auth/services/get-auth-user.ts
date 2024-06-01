@@ -3,7 +3,7 @@ import {
   requireAuthentication,
   type TemporalUserEntity,
   type UserEntity,
-} from '@/database'
+} from '@/core'
 
 export const getAuthUser = async (): Promise<
   TemporalUserEntity | UserEntity

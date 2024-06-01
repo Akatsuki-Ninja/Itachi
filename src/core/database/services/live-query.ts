@@ -1,4 +1,4 @@
-import { getDatabase } from '@/database'
+import { getDatabase } from '@/core'
 
 export type LiveQueryClosureReason = 'QUERY_KILLED' | 'SOCKET_CLOSED'
 

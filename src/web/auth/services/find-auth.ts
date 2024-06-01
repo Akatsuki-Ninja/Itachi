@@ -1,4 +1,4 @@
-import { findAuthUser } from '@/database'
+import { findAuthUser } from '@/core'
 import { authenticate } from '@/web/auth'
 
 export const findAuth = async () => {

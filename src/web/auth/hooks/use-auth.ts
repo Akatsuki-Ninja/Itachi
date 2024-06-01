@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 import { findAuth, getAuth } from '@/web/auth'
 
-import { removeToken } from '../library/manage-token.ts'
+import { removeToken } from '../library/manage-token'
 
 export const QUERY_KEY = 'auth'
 

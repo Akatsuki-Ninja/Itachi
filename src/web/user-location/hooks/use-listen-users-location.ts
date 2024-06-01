@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { kill, listenUsersLocation } from '@/database'
+import { kill, listenUsersLocation } from '@/core'
 
 export const useListenUsersLocation = () => {
   useEffect(() => {

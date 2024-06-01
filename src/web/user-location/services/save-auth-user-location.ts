@@ -1,7 +1,7 @@
 import {
   setAuthUserLocation as setUserLocationInDatabase,
   type UserLocation,
-} from '@/database'
+} from '@/core'
 import { authenticate } from '@/web/auth'
 
 export async function saveAuthUserLocation(payload: UserLocation) {

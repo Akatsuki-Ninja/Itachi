@@ -1,9 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import {
-  type SignupCredentials,
-  type TemporalSignupCredentials,
-} from '@/database'
+import { type SignupCredentials, type TemporalSignupCredentials } from '@/core'
 import { AUTH_QUERY_KEY, signup } from '@/web/auth'
 
 export const useSignup = ({

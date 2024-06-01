@@ -1,4 +1,4 @@
-import { query, requireAuthentication } from '@/database'
+import { query, requireAuthentication } from '@/core'
 
 export type RoomEntity = {
   id: string

@@ -1,4 +1,4 @@
-import { getDatabase } from '@/database'
+import { getDatabase } from '@/core'
 
 export const kill = async (uuid: string): Promise<void> => {
   const db = await getDatabase()

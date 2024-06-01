@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { type RoomEntity } from '@/database'
+import { type RoomEntity } from '@/core'
 import { createRoom } from '@/web/room'
 
 export const useCreateRoom = ({
