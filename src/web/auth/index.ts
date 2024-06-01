@@ -1,3 +1,4 @@
+export { EnterModal } from './components/enter-modal'
 export { QUERY_KEY as AUTH_QUERY_KEY, useAuth } from './hooks/use-auth'
 export { useGetFetchedAuth } from './hooks/use-get-fetched-auth'
 export { useSignup } from './hooks/use-signup'

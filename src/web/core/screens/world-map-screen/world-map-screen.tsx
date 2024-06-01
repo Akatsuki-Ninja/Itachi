@@ -1,13 +1,14 @@
 import { Box } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   useListenUsersLocation,
   useSaveAuthUserLocation,
 } from 'src/web/user-location'
 
-import { type TemporalUserEntity, type UserEntity } from '@/core'
-import { useAuth } from '@/web/auth'
+import type { UserEntityLike } from '@/core'
+import { useGetFetchedAuth } from '@/web/auth'
 import { type Coords, Map, useLocation } from '@/web/common'
+import { getUserPreview } from '@/web/user'
 
 import { UserMarker } from './user-marker'
 
@@ -15,40 +16,46 @@ const GOOGLE_MAPS_API_KEY = 'AIzaSyCUZf3em7J8q8WkWOfjJ1B9c5N1aKrDiVI'
 
 type Marker = {
   coords: Coords
-  user: TemporalUserEntity | UserEntity
+  user: UserEntityLike
 }
 
 export const WorldMapScreen = () => {
-  const { data: user } = useAuth()
+  // TODO: if no user, show popup to register as on WorldCard
+  const user = useGetFetchedAuth()
+  const userPreview = useMemo(() => getUserPreview(user), [user])
 
-  const { mutate: setAuthUserPosition } = useSaveAuthUserLocation()
-  const userLocation = useLocation()
+  const { location } = useLocation()
   const [markers, setMarkers] = useState<Marker[]>([])
+  const { mutate: setAuthUserPosition } = useSaveAuthUserLocation()
 
   useListenUsersLocation()
 
   useEffect(() => {
-    if (!userLocation || !user) return
+    if (!location) return
 
-    setAuthUserPosition(userLocation)
+    setAuthUserPosition(location)
+  }, [setAuthUserPosition, user, location])
+
+  useEffect(() => {
+    if (!location) return
 
     setMarkers([
       {
-        coords: userLocation,
-        user,
+        coords: location,
+        user: userPreview,
       },
     ])
-  }, [setAuthUserPosition, user, userLocation])
+  }, [location, userPreview])
 
   return (
     <Box
       h={'100vh'}
       w={'100vw'}
     >
-      {userLocation ? (
+      {location ? (
         <Map
           apiKey={GOOGLE_MAPS_API_KEY}
-          center={userLocation}
+          center={location}
         >
           {markers.map((marker) => (
             <UserMarker

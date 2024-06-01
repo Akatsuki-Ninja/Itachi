@@ -1,4 +1,5 @@
 import { getDatabase } from '@/core'
+import { getScopeFromCredentials } from '@/core/auth/library/get-user-scope.ts'
 
 export type TemporalSignupCredentials = {
   name?: string
@@ -10,6 +11,11 @@ export type SignupCredentials = {
   password: string
 }
 
+export enum UserScope {
+  temporal = 'temporal',
+  user = 'user',
+}
+
 export const signup = async (
   credentials: SignupCredentials | TemporalSignupCredentials
 ) => {
@@ -17,13 +23,7 @@ export const signup = async (
 
   return await db.signup({
     namespace: 'main',
-    scope: isTemporalCredentials(credentials) ? 'temporal' : 'user',
+    scope: getScopeFromCredentials(credentials),
     ...credentials,
   })
-}
-
-const isTemporalCredentials = (
-  credentials: SignupCredentials | TemporalSignupCredentials
-): credentials is TemporalSignupCredentials => {
-  return !(credentials as SignupCredentials).email
 }

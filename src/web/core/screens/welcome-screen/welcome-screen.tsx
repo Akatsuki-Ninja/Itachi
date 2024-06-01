@@ -2,13 +2,12 @@ import { Button, Grid, GridItem, Heading } from '@chakra-ui/react'
 import { useNavigate } from '@tanstack/react-router'
 import { useCallback, useState } from 'react'
 
-import { useAuth } from '@/web/auth'
+import { EnterModal, useAuth } from '@/web/auth'
 import { useCreateRoom } from '@/web/room'
 
 import { ROOM_ID_PARAM, ROOM_PATH } from '../../routes/room-route'
 import { WORLD_MAP_PATH } from '../../routes/world-map-route'
 
-import { EnterModal } from './enter-modal.tsx'
 import { WelcomeCard } from './welcome-card'
 
 export const WelcomeScreen = () => {
@@ -25,6 +24,7 @@ export const WelcomeScreen = () => {
   const [showAuthModal, setShowAuthModal] = useState(false)
 
   const handleChatClick = async () => {
+    // TODO: auto create user
     if (!user) {
       setShowAuthModal(true)
       return
@@ -65,6 +65,7 @@ const WorldCard = () => {
   const navigate = useNavigate()
 
   const handleMapClick = useCallback(async () => {
+    // TODO: show popup and ask to continue as anonymous, temporal or regular
     await navigate({ to: WORLD_MAP_PATH })
   }, [navigate])
 

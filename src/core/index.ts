@@ -1,9 +1,12 @@
+export { isTemporalUser } from './auth/library/get-user-scope'
 export { authenticate } from './auth/services/authenticate'
 export {
   findAuthUser,
   type TemporalUserEntity,
   type UserEntity,
+  type UserEntityLike,
 } from './auth/services/find-auth-user'
+
 export { getAuthUser } from './auth/services/get-auth-user'
 export { requireAuthentication } from './auth/services/require-authentication'
 export {

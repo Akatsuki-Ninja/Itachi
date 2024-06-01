@@ -4,7 +4,7 @@ export const useGetFetchedAuth = () => {
   const { data, isFetched } = useAuth()
 
   if (!isFetched) {
-    throw new Error('Authenticated User should be already fetched')
+    throw new Error('Authenticated user should be already fetched')
   }
 
   if (!data) {

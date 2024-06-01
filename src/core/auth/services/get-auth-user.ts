@@ -1,13 +1,10 @@
 import {
   findAuthUser,
   requireAuthentication,
-  type TemporalUserEntity,
-  type UserEntity,
+  type UserEntityLike,
 } from '@/core'
 
-export const getAuthUser = async (): Promise<
-  TemporalUserEntity | UserEntity
-> => {
+export const getAuthUser = async (): Promise<UserEntityLike> => {
   await requireAuthentication()
 
   const userEntity = await findAuthUser()
