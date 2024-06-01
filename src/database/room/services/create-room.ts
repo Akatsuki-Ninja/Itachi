@@ -1,11 +1,15 @@
-import { query } from '../../common/services/query'
+import { query, requireSession } from '@/database'
 
 export type RoomEntity = {
   id: string
 }
 
+const QUERY = 'CREATE room;'
+
 export const createRoom = async () => {
-  const [[roomEntity]] = await query<RoomEntity>(`CREATE room;`)
+  await requireSession()
+
+  const [[roomEntity]] = await query<[[RoomEntity]]>(QUERY)
 
   return roomEntity
 }

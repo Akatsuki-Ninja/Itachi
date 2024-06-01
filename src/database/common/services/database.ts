@@ -9,6 +9,12 @@ export const connect = async () => {
   })
 }
 
+export const getDatabase = async () => {
+  await ready()
+
+  return database
+}
+
 export const ready = async () => {
   try {
     await database.wait()
@@ -19,10 +25,4 @@ export const ready = async () => {
 
 export const disconnect = async () => {
   await database.close()
-}
-
-export const getDatabase = async () => {
-  await ready()
-
-  return database
 }

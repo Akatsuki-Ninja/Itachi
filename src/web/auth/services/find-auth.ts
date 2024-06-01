@@ -1,6 +1,5 @@
 import { findAuthUser } from '@/database'
-
-import { authenticate } from './authenticate'
+import { authenticate } from '@/web/auth'
 
 export const findAuth = async () => {
   if (await authenticate({ required: false })) {

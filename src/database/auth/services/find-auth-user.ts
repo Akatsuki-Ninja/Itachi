@@ -13,10 +13,15 @@ export type UserEntity = {
   password: string
 }
 
-export const findAuthUser = async () => {
-  const [[userEntity]] = await query<TemporalUserEntity | UserEntity>(`
-    SELECT * FROM user WHERE id = $auth;
-  `)
+const QUERY = `
+  SELECT * FROM user WHERE id = $auth;
+`
+
+export const findAuthUser = async (): Promise<
+  null | TemporalUserEntity | UserEntity
+> => {
+  const [[userEntity]] =
+    await query<[[null | TemporalUserEntity | UserEntity]]>(QUERY)
 
   return userEntity
 }

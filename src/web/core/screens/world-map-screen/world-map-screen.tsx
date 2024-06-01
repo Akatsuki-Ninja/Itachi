@@ -1,15 +1,16 @@
 import { Box } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
-import { type DefaultEmptyType } from '@/common'
 import { type TemporalUserEntity, type UserEntity } from '@/database'
 import { useAuth } from '@/web/auth'
 import { type Coords, Map } from '@/web/common'
-import { useSetAuthUserPosition } from '@/web/world-map'
+import { useSaveAuthUserLocation } from '@/web/world-map'
+import { useListenUsersLocation } from '@/web/world-map/hooks/use-listen-users-location.ts'
+import { useLocation } from '@/web/world-map/hooks/use-location.ts'
 
 import { UserMarker } from './user-marker'
 
-const GOOGLE_MAPS_API_KEY = 'AIzaSyDtGCQDtjV6pABs-8PctcMWAj3ouYPM9vE'
+const GOOGLE_MAPS_API_KEY = 'AIzaSyCUZf3em7J8q8WkWOfjJ1B9c5N1aKrDiVI'
 
 type Marker = {
   coords: Coords
@@ -18,46 +19,25 @@ type Marker = {
 
 export const WorldMapScreen = () => {
   const { data: user } = useAuth()
-  const { mutate: setAuthUserPosition } = useSetAuthUserPosition({
-    onSuccess: console.info,
-  })
 
-  const [userLocation, setUserLocation] =
-    useState<DefaultEmptyType<Coords>>(undefined)
+  const { mutate: setAuthUserPosition } = useSaveAuthUserLocation()
+  const userLocation = useLocation()
   const [markers, setMarkers] = useState<Marker[]>([])
 
+  useListenUsersLocation()
+
   useEffect(() => {
-    if (!user) return
+    if (!userLocation || !user) return
 
-    const watchId = navigator.geolocation.watchPosition(
-      ({ coords: { latitude: lat, longitude: lng } }) => {
-        setAuthUserPosition({
-          lat,
-          lng,
-        })
+    setAuthUserPosition(userLocation)
 
-        setUserLocation({
-          lat,
-          lng,
-        })
-        setMarkers([
-          {
-            coords: {
-              lat,
-              lng,
-            },
-            user,
-          },
-        ])
+    setMarkers([
+      {
+        coords: userLocation,
+        user,
       },
-      console.error
-    )
-
-    return () => {
-      navigator.geolocation.clearWatch(watchId)
-      setMarkers([])
-    }
-  }, [setAuthUserPosition, user])
+    ])
+  }, [setAuthUserPosition, user, userLocation])
 
   return (
     <Box

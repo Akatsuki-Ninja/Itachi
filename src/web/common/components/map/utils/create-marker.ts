@@ -3,12 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 
 import { type DefaultEmptyType } from '@/common'
 
-import {
-  type Coords,
-  google,
-  type MapInstance,
-  type MarkerLibrary,
-} from './google'
+import { type Coords, type MapInstance, type MarkerLibrary } from './google'
 
 export type MakerOptions = {
   content?: DefaultEmptyType<ReactNode>
@@ -23,7 +18,7 @@ export const createMarker = async ({
   map,
   title,
 }: MakerOptions) => {
-  const { AdvancedMarkerElement } = (await google.maps.importLibrary(
+  const { AdvancedMarkerElement } = (await window.google.maps.importLibrary(
     'marker'
   )) as MarkerLibrary
 
@@ -33,7 +28,7 @@ export const createMarker = async ({
   contentElement.innerHTML = renderToStaticMarkup(content)
   titleElement.innerHTML = renderToStaticMarkup(title)
 
-  const pinGlyph = new google.maps.marker.PinElement({
+  const pinGlyph = new window.google.maps.marker.PinElement({
     glyph: titleElement,
     glyphColor: 'white',
   })
@@ -45,7 +40,7 @@ export const createMarker = async ({
   })
 
   marker.addListener('click', () => {
-    const infoWindow = new google.maps.InfoWindow({
+    const infoWindow = new window.google.maps.InfoWindow({
       content: '',
       disableAutoPan: true,
     })

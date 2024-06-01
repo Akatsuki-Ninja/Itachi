@@ -14,7 +14,7 @@ import { WelcomeCard } from './welcome-card'
 export const WelcomeScreen = () => {
   const navigate = useNavigate()
 
-  const { data: user } = useAuth()
+  const { data: user } = useAuth({ required: false })
   const { mutate: goToNewChat } = useCreateRoom({
     onSuccess: async (room) => {
       await navigate({ to: ROOM_PATH.replace(ROOM_ID_PARAM, room.id) })

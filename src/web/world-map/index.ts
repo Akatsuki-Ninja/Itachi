@@ -1,2 +1,2 @@
-export * from './services/set-auth-user-position'
-export * from './hooks/use-set-auth-user-position'
+export * from './services/save-auth-user-location.ts'
+export * from './hooks/use-save-auth-user-location.ts'
