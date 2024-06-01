@@ -13,7 +13,7 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react'
-import { FormEvent } from 'react'
+import { FormEvent, useCallback } from 'react'
 
 import { useSignup } from '@/web/auth'
 
@@ -23,7 +23,7 @@ type EnterChatModalProps = {
   open: boolean
 }
 
-export const EnterChatModal = ({
+export const EnterModal = ({
   onClose,
   onSuccess,
   open,
@@ -31,14 +31,16 @@ export const EnterChatModal = ({
   const { mutate: signup } = useSignup({
     onSuccess,
   })
+  const sign = useCallback(
+    async (event: FormEvent) => {
+      event.preventDefault()
 
-  const sign = async (event: FormEvent) => {
-    event.preventDefault()
-
-    signup({
-      name: (event.currentTarget as any).name.value,
-    })
-  }
+      signup({
+        name: (event.currentTarget as any).name.value,
+      })
+    },
+    [signup]
+  )
 
   return (
     <Modal

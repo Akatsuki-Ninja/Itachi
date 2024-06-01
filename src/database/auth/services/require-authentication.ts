@@ -1,6 +1,6 @@
 import { getDatabase } from '@/database'
 
-export const requireSession = async () => {
+export const requireAuthentication = async () => {
   const db = await getDatabase()
 
   const session = await db.info()

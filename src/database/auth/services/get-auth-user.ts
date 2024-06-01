@@ -1,6 +1,6 @@
 import {
   findAuthUser,
-  requireSession,
+  requireAuthentication,
   type TemporalUserEntity,
   type UserEntity,
 } from '@/database'
@@ -8,7 +8,7 @@ import {
 export const getAuthUser = async (): Promise<
   TemporalUserEntity | UserEntity
 > => {
-  await requireSession()
+  await requireAuthentication()
 
   const userEntity = await findAuthUser()
 

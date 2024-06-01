@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react'
 
 import { type TemporalUserEntity, type UserEntity } from '@/database'
 import { useAuth } from '@/web/auth'
-import { type Coords, Map } from '@/web/common'
-import { useSaveAuthUserLocation } from '@/web/world-map'
-import { useListenUsersLocation } from '@/web/world-map/hooks/use-listen-users-location.ts'
-import { useLocation } from '@/web/world-map/hooks/use-location.ts'
+import { type Coords, Map, useLocation } from '@/web/common'
+import {
+  useListenUsersLocation,
+  useSaveAuthUserLocation,
+} from '@/web/world-map'
 
 import { UserMarker } from './user-marker'
 
