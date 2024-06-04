@@ -1,10 +1,16 @@
-import { StreamCall, StreamVideo } from '@stream-io/video-react-sdk'
+import {
+  CallControls,
+  StreamCall,
+  StreamTheme,
+  StreamVideo,
+} from '@stream-io/video-react-sdk'
+import '@stream-io/video-react-sdk/dist/css/styles.css'
 import { useEffect } from 'react'
 
 import type { ChatUserType } from '../../types/chat-user-type'
 
 import { useVideoClient } from './hooks/use-video-client'
-import { Participant } from './participant'
+import { Participants } from './participants.tsx'
 
 export const VideoCall = ({
   callId,
@@ -27,9 +33,12 @@ export const VideoCall = ({
 
   return (
     <StreamVideo client={client}>
-      <StreamCall call={call}>
-        <Participant />
-      </StreamCall>
+      <StreamTheme>
+        <StreamCall call={call}>
+          <Participants />
+          <CallControls />
+        </StreamCall>
+      </StreamTheme>
     </StreamVideo>
   )
 }

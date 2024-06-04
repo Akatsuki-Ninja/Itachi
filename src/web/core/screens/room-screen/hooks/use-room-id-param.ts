@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { cutEntityId } from '@/database'
+import { cutEntityId } from '@/core'
 
 import { roomRoute } from '../../../routes/room-route'
 

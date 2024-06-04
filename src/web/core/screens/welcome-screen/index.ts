@@ -1,1 +1,1 @@
-export { WelcomeScreen } from './welcome-screen.tsx'
+export { WelcomeScreen } from './welcome-screen'

@@ -1,1 +1,1 @@
-export * from './room-screen.tsx'
+export * from './room-screen'

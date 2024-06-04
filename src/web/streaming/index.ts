@@ -1,2 +1,4 @@
-export * from './components/stream'
-export * from './types/chat-user-type'
+export { Messenger } from './components/messenger'
+export { VideoCall } from './components/video-call'
+
+export { type ChatUserType } from './types/chat-user-type'

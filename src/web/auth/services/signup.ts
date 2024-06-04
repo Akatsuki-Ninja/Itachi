@@ -2,7 +2,7 @@ import {
   type SignupCredentials,
   signup as signUpInToDatabase,
   type TemporalSignupCredentials,
-} from '@/database'
+} from '@/core'
 
 import { saveToken } from '../library/manage-token'
 

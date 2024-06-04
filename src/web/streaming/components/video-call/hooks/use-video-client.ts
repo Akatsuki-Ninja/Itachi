@@ -1,7 +1,8 @@
 import { useMemo, useRef } from 'react'
 
-import { createVideoClient } from '../../../services/create-video-client'
 import type { ChatUserType } from '../../../types/chat-user-type'
+
+import { createVideoClient } from './create-video-client'
 
 export const useVideoClient = ({
   callId,

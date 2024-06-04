@@ -1,1 +1,1 @@
-export { WorldMapScreen } from './world-map-screen.tsx'
+export { WorldMapScreen } from './world-map-screen'

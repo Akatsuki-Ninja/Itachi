@@ -1,4 +1,4 @@
-import { authenticate as authenticateInDatabase } from '@/database'
+import { authenticate as authenticateInDatabase } from '@/core'
 
 import { getToken, removeToken } from '../library/manage-token'
 
