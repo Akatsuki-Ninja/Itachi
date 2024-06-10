@@ -1,4 +1,4 @@
-import { getAuthentication, query } from '@/core'
+import { getSession, query } from '@/database'
 
 export type UserLocation = {
   lat: number
@@ -10,9 +10,13 @@ export type UserLocationEntity = {
   location: UserLocation
 }
 
-// @todo: make it via graph link
-const QUERY =
-  'UPDATE type::thing("userLocation", $userId) SET location = $location;'
+const QUERY = `
+LET location = (UPDATE userLocation SET location = $location);
+
+RELATE $userId->userToLocation->location;
+
+RETURN $location;
+`
 
 export const saveUserLocation = async ({
   location,
@@ -21,7 +25,7 @@ export const saveUserLocation = async ({
   location: UserLocation
   userId: string
 }): Promise<UserLocationEntity> => {
-  await getAuthentication()
+  await getSession()
 
   const [[userPositionEntity]] = await query<[[UserLocationEntity]]>(QUERY, {
     location,

@@ -43,6 +43,11 @@ module.exports = {
       'type': 'natural',
       'order': 'asc',
       'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+      'custom-groups': {
+        'value': {
+          'builtin': 'node:*',
+        }
+      },
       'newlines-between': 'always',
       'internal-pattern': [
         '@/**',

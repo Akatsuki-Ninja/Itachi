@@ -1,6 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { type SignupCredentials, type TemporalSignupCredentials } from '@/core'
+import {
+  type RegisterCredentials,
+  type TemporalRegisterCredentials,
+} from '@/core'
 import { AUTH_QUERY_KEY, signup } from '@/web/auth'
 import { useLogTanQuery } from '@/web/common'
 
@@ -13,7 +16,7 @@ export const useSignup = ({
 
   const mutation = useMutation({
     mutationFn: async (
-      credentials: SignupCredentials | TemporalSignupCredentials
+      credentials: RegisterCredentials | TemporalRegisterCredentials
     ) => {
       const token = await signup(credentials)
 

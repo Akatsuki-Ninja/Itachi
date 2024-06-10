@@ -1,4 +1,4 @@
-import { getAuthentication, query } from '@/core'
+import { getSession, query } from '@/database'
 
 export type RoomEntity = {
   id: string
@@ -7,7 +7,7 @@ export type RoomEntity = {
 const QUERY = 'CREATE room;'
 
 export const createRoom = async () => {
-  await getAuthentication()
+  await getSession()
 
   const [[roomEntity]] = await query<[[RoomEntity]]>(QUERY)
 

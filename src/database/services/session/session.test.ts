@@ -1,17 +1,15 @@
 import { deepStrictEqual, ok } from 'node:assert/strict'
-
 import { after, before, describe, it } from 'node:test'
 
+import { isRegularUser, isTemporalUser } from '@/core'
 import {
   close,
   connect,
-  isRegularUser,
-  isTemporalUser,
   session,
   signup,
-  type SignupCredentials,
-  type TemporalSignupCredentials,
-} from '@/core'
+  type Signup,
+  UserScope,
+} from '@/database'
 
 describe('Session', () => {
   before(async () => {
@@ -27,39 +25,42 @@ describe('Session', () => {
   })
 
   it('should return regular user in the session after regular user signup', async () => {
-    const credentials: SignupCredentials = {
+    const credentials: Signup = {
       email: 'test-email',
       name: 'test-user',
       password: 'test-password',
+      scope: UserScope.user,
     }
     await signup(credentials)
 
     const userSession = await session()
 
     ok(userSession)
-    ok(isRegularUser(userSession), 'User should be regular.')
+    ok(isRegularUser(userSession), 'User should be in the regular scope.')
 
     deepStrictEqual(userSession, {
-      ...credentials,
+      email: credentials.email,
       id: userSession.id,
+      name: credentials.name,
       password: userSession.password,
     })
   })
 
   it('should return temporal user session after temporal user signup', async () => {
-    const credentials: TemporalSignupCredentials = {
+    const credentials: Signup = {
       name: 'test-user',
+      scope: UserScope.temporal,
     }
     await signup(credentials)
 
     const userSession = await session()
 
     ok(userSession)
-    ok(isTemporalUser(userSession), 'User should be temporal.')
+    ok(isTemporalUser(userSession), 'User should be in the temporal scope.')
 
     deepStrictEqual(userSession, {
-      ...credentials,
       id: userSession.id,
+      name: credentials.name,
       temporal: true,
     })
   })

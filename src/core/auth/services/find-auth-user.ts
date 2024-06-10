@@ -1,4 +1,4 @@
-import { query } from '@/core'
+import { authenticate, query } from '@/database'
 
 export type TemporalUserEntity = {
   id: string
@@ -19,7 +19,11 @@ const QUERY = `
   SELECT * FROM user WHERE id = $auth;
 `
 
-export const findAuthUser = async (): Promise<null | UserEntityLike> => {
+export const findAuthUser = async (
+  token: string
+): Promise<null | UserEntityLike> => {
+  await authenticate(token)
+
   const [[userEntity]] = await query<[[null | UserEntityLike]]>(QUERY)
 
   return userEntity

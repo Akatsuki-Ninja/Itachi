@@ -1,12 +1,7 @@
-import {
-  kill,
-  type LiveAction,
-  liveQuery,
-  query,
-  type UserLocationEntity,
-} from '@/core'
+import type { UserLocationEntity } from '@/core'
+import { kill, type LiveAction, liveQuery, query } from '@/database'
 
-const QUERY = 'LIVE SELECT * FROM userLocation;'
+const QUERY = 'LIVE SELECT * FROM user->userToLocation->userLocation;'
 
 export const listenUsersLocation = async ({
   onChange,

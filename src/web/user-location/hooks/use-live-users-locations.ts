@@ -1,10 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import {
-  listenUsersLocation,
-  type LiveAction,
-  type UserLocationEntity,
-} from '@/core'
+import { listenUsersLocation, type UserLocationEntity } from '@/core'
+import type { LiveAction } from '@/database'
 
 export const useLiveUsersLocations = () => {
   const [liveLocationsByUserId, setLiveLocationsByUserId] = useState<{

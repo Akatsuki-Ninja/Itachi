@@ -1,4 +1,4 @@
-import { getDatabase } from '@/core'
+import { getDatabase } from '@/database'
 
 export const authenticate = async (token: string) => {
   const db = await getDatabase()
