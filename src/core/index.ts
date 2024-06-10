@@ -6,7 +6,7 @@ export {
   type UserEntity,
   type UserEntityLike,
 } from './auth/services/find-auth-user'
-export { requireAuthentication } from './auth/services/require-authentication'
+export { getAuthentication } from './auth/services/get-authentication'
 export {
   signup,
   type SignupCredentials,
@@ -22,6 +22,7 @@ export {
 export { kill } from './database/services/kill'
 export { type LiveAction, liveQuery } from './database/services/live-query'
 export { query } from './database/services/query'
+export { session } from './database/services/session'
 export { createRoom, type RoomEntity } from './room/services/create-room'
 export { deleteUserLocation } from './user-location/services/delete-user-location'
 export { listenUsersLocation } from './user-location/services/listen-users-location'
@@ -29,4 +30,4 @@ export {
   saveUserLocation,
   type UserLocation,
   type UserLocationEntity,
-} from './user-location/services/save-user-location'
+} from './user-location/services/save-user-location/save-user-location'

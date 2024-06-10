@@ -1,4 +1,4 @@
-import { query, requireAuthentication } from '@/core'
+import { getAuthentication, query } from '@/core'
 
 export type UserLocation = {
   lat: number
@@ -21,7 +21,7 @@ export const saveUserLocation = async ({
   location: UserLocation
   userId: string
 }): Promise<UserLocationEntity> => {
-  await requireAuthentication()
+  await getAuthentication()
 
   const [[userPositionEntity]] = await query<[[UserLocationEntity]]>(QUERY, {
     location,

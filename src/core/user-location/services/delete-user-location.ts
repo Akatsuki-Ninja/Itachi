@@ -1,4 +1,4 @@
-import { query, requireAuthentication } from '@/core'
+import { getAuthentication, query } from '@/core'
 
 // @todo: make it via graph link
 const QUERY = 'DELETE type::thing("userLocation", $userId);'
@@ -8,7 +8,7 @@ export const deleteUserLocation = async ({
 }: {
   userId: string
 }): Promise<string> => {
-  await requireAuthentication()
+  await getAuthentication()
 
   const [[result]] = await query<[[string]]>(QUERY, {
     userId,

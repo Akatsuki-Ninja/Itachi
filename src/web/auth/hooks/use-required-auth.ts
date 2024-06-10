@@ -3,13 +3,13 @@ import { useAuth } from '@/web/auth'
 export const useRequiredAuth = () => {
   const { data, isFetched } = useAuth()
 
+  if (data) {
+    return data
+  }
+
   if (!isFetched) {
-    throw new Error('Authenticated user should be already fetched')
+    throw new Error('User should be already authenticated/fetched.')
   }
 
-  if (!data) {
-    throw new Error('Authentication is required')
-  }
-
-  return data
+  throw new Error('User is not authenticated.')
 }
