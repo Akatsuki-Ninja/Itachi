@@ -18,4 +18,4 @@ export {
   saveUserLocation,
   type UserLocation,
   type UserLocationEntity,
-} from './user-location/services/save-user-location'
+} from './user-location/services/save-user-location/save-user-location'

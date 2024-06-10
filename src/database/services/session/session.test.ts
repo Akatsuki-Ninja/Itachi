@@ -32,7 +32,6 @@ describe('Session', () => {
       scope: UserScope.user,
     }
     await signup(credentials)
-
     const userSession = await session()
 
     ok(userSession)
