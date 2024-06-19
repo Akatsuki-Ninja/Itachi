@@ -20,6 +20,11 @@ Start database.
 docker run --rm --pull always -p 8000:8000 surrealdb/surrealdb:latest start
 ```
 
+Install dependencies.
+```shell
+npm i
+```
+
 Migrate database.
 ```shell
 npm run migrate
@@ -27,10 +32,5 @@ npm run migrate
 
 Run application.
 ```shell
-npm i
 npm run dev
 ```
-
----
-
-![Logo](https://cdn.dribbble.com/userupload/8642639/file/original-f61257048a5829b70a23b6ff48adc87f.png?resize=2048x2896)

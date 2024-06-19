@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 
 import type { DefaultEmptyType, Location } from '@/common'
 import {
+  useCreateUserLocation,
   useDeleteUserLocation,
-  useSaveAuthUserLocation,
 } from '@/web/user-location'
 
 export const useTrackUserLocation = ({
@@ -13,16 +13,16 @@ export const useTrackUserLocation = ({
   location: DefaultEmptyType<Location>
   userId: string
 }) => {
-  const { mutate: setAuthUserLocation } = useSaveAuthUserLocation()
-  const { mutate: deleteAuthUserLocation } = useDeleteUserLocation()
+  const { mutate: createUserLocation } = useCreateUserLocation()
+  const { mutate: deleteUserLocation } = useDeleteUserLocation()
 
   useEffect(() => {
     if (!location) return
 
-    setAuthUserLocation({ location, userId })
+    createUserLocation({ location, userId })
 
     return () => {
-      deleteAuthUserLocation({ userId })
+      deleteUserLocation({ userId })
     }
-  }, [setAuthUserLocation, deleteAuthUserLocation, location, userId])
+  }, [createUserLocation, deleteUserLocation, location, userId])
 }
