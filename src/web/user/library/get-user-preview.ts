@@ -1,14 +1,19 @@
-import { isTemporalUser, type UserEntityLike } from '@/core'
+import { isTemporalUser, type UserLikeDto } from '@/core'
 
-const TEMPORAL_USER_EMPTY_NAME = 'Anonymous User'
+import type { UserPreview } from '../models/user-preview-model'
 
-export const getUserPreview = (userLike: UserEntityLike): UserEntityLike => {
-  if (isTemporalUser(userLike)) {
+const TEMPORAL_USER_EMPTY_NAME = 'Anonymous'
+
+export const getUserPreview = (user: UserLikeDto): UserPreview => {
+  if (isTemporalUser(user)) {
     return {
-      ...userLike,
-      name: userLike.name ?? TEMPORAL_USER_EMPTY_NAME,
+      ...user,
+      name: user.name ?? TEMPORAL_USER_EMPTY_NAME,
     }
   }
 
-  return userLike
+  return {
+    ...user,
+    name: user.name ?? user.email,
+  }
 }

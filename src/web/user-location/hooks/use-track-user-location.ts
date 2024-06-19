@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 
-import type { DefaultEmptyType } from '@/common'
-import type { UserLocation } from '@/core'
+import type { DefaultEmptyType, Location } from '@/common'
 import {
   useDeleteUserLocation,
   useSaveAuthUserLocation,
@@ -11,7 +10,7 @@ export const useTrackUserLocation = ({
   location,
   userId,
 }: {
-  location: DefaultEmptyType<UserLocation>
+  location: DefaultEmptyType<Location>
   userId: string
 }) => {
   const { mutate: setAuthUserLocation } = useSaveAuthUserLocation()

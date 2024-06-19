@@ -1,9 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import {
-  type RegisterCredentials,
-  type TemporalRegisterCredentials,
-} from '@/core'
+import type { SignUpDto } from '@/core'
 import { AUTH_QUERY_KEY, signup } from '@/web/auth'
 import { useLogTanQuery } from '@/web/common'
 
@@ -15,9 +12,7 @@ export const useSignup = ({
   const queryClient = useQueryClient()
 
   const mutation = useMutation({
-    mutationFn: async (
-      credentials: RegisterCredentials | TemporalRegisterCredentials
-    ) => {
+    mutationFn: async (credentials: SignUpDto) => {
       const token = await signup(credentials)
 
       await queryClient.invalidateQueries({ queryKey: [AUTH_QUERY_KEY] })

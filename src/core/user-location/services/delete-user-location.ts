@@ -1,13 +1,7 @@
-import { getSession, query } from '@/database'
-
-const QUERY = `
-LET userLocation = (SELECT * FROM $userId->userToLocation->userLocation);
-
-DELETE $userId->userLocation->userLocation.id;
-DELETE FROM userLocation WHERE id = $userId->userLocation.id;
-
-RETURN userLocation;
-`
+import {
+  deleteUserLocation as deleteUserLocationInStore,
+  getSession,
+} from '@/store'
 
 export const deleteUserLocation = async ({
   userId,
@@ -16,9 +10,5 @@ export const deleteUserLocation = async ({
 }): Promise<string> => {
   await getSession()
 
-  const [[result]] = await query<[[string]]>(QUERY, {
-    userId,
-  })
-
-  return result
+  return await deleteUserLocationInStore({ userId })
 }

@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { listenUsersLocation, type UserLocationEntity } from '@/core'
+import type { UserLocationDto } from '@/core'
 import type { LiveAction } from '@/database'
+import { listenUsersLocation } from '@/store'
 
 export const useLiveUsersLocations = () => {
   const [liveLocationsByUserId, setLiveLocationsByUserId] = useState<{
-    [userId: string]: UserLocationEntity
+    [userId: string]: UserLocationDto
   }>({})
   const liveLocations = useMemo(
     () => Object.values(liveLocationsByUserId),
@@ -48,7 +49,7 @@ export const useLiveUsersLocations = () => {
 const useListenUsersLocation = ({
   onChange,
 }: {
-  onChange: (data: { action: LiveAction; payload?: UserLocationEntity }) => void
+  onChange: (data: { action: LiveAction; payload?: UserLocationDto }) => void
 }) => {
   useEffect(() => {
     const unsubscribePromise = listenUsersLocation({ onChange })
