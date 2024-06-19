@@ -22,7 +22,7 @@ docker run --rm --pull always -p 8000:8000 surrealdb/surrealdb:latest start
 
 Migrate database.
 ```shell
-node src/core/database/scripts/migrate.js
+npm run migrate
 ```
 
 Run application.

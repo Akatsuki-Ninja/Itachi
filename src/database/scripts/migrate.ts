@@ -1,6 +1,4 @@
-import { Surreal } from 'surrealdb.js'
-
-const db = new Surreal()
+import { close, query } from '@/database'
 
 const QUERY = `
 REMOVE TABLE IF EXISTS user;
@@ -41,12 +39,7 @@ DEFINE SCOPE temporal SESSION 14d
     );
 `
 ;(async () => {
-  await db.connect('http://127.0.0.1:8000/rpc', {
-    database: 'itachi',
-    namespace: 'main',
-  })
+  await query(QUERY)
 
-  await db.query(QUERY)
-
-  await db.close()
+  await close()
 })()
