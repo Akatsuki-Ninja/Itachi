@@ -6,17 +6,21 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    container:
+      image: node:alpine
+    services:
+      surrealdb:
+        image: surrealdb/surrealdb:latest
+        ports:
+          - 8000:8000
+        options: >-
+          --health-cmd "curl -f http://127.0.0.1:8000/health || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          --entrypoint "/surreal start"
     steps:
       - uses: actions/checkout@v2
-      - name: Start SurrealDB
-        uses: surrealdb/setup-surreal@v1
-        with:
-          surrealdb_version: latest
-          surrealdb_port: 8000
-          surrealdb_auth: false
-          surrealdb_strict: false
-          surrealdb_log: info
-          surrealdb_additional_args: --allow-all
       - uses: actions/setup-node@v4
         with:
           node-version: 22
