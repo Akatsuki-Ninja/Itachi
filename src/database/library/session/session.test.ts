@@ -1,11 +1,21 @@
-import { deepStrictEqual, ok } from 'node:assert/strict'
+import { deepEqual, ok } from 'node:assert/strict'
 import { after, before, describe, it } from 'node:test'
 
-import { close, connect, session, signup, type Signup } from '@/database'
+import {
+  close,
+  connectTestDb,
+  query,
+  session,
+  signup,
+  type Signup,
+} from '@/database'
+import { MIGRATION_QUERY } from '@/database/scripts/migartion-query'
+import { UserScope } from '@/store'
 
 describe('Session', () => {
   before(async () => {
-    await connect()
+    await connectTestDb()
+    await query(MIGRATION_QUERY)
   })
 
   after(async () => {
@@ -21,14 +31,13 @@ describe('Session', () => {
       email: 'test-email',
       name: 'test-user',
       password: 'test-password',
-      scope: 'test',
+      scope: UserScope.user,
     }
     await signup(credentials)
     const userSession = await session<any>()
 
     ok(userSession)
-
-    deepStrictEqual(userSession, {
+    deepEqual(userSession, {
       email: credentials.email,
       id: userSession.id,
       name: credentials.name,

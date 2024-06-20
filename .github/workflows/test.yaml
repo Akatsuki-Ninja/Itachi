@@ -6,10 +6,26 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    container:
+      image: node:alpine
+    services:
+      surrealdb:
+        image: surrealdb/surrealdb:latest
+        ports:
+          - 8000:8000
+        options: >-
+          --health-cmd "curl -f http://127.0.0.1:8000/health || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          surreal start
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 21
-    - run: npm install
-    - run: npm test
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm test
+        env:
+          SURREAL_DATABASE: itachi
+          SURREAL_URL: http://127.0.0.1:8000/rpc

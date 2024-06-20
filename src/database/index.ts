@@ -1,3 +1,4 @@
+export { connectTestDb } from './test/library/connect-test-db'
 export { authenticate } from '@/database/library/authenticate'
 export { close } from '@/database/library/close'
 export {

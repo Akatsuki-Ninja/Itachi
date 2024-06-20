@@ -1,7 +1,8 @@
 {
   "name": "itachi",
-  "private": true,
-  "version": "0.0.0",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

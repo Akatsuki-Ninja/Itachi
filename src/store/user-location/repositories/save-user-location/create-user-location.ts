@@ -6,9 +6,10 @@ import type { UserLocationEntity } from '../../entities/user-location-entity'
 const QUERY = `
 LET $location = CREATE userLocation CONTENT {
   lat: $location.lat,
-  lng: $location.lng
-  createdAt: time::now()
+  lng: $location.lng,
+  createdAt: time::now(),
 };
+
 LET $user = SELECT * FROM user WHERE id = $userId;
 LET $locationOf = RELATE $user->locationOf->$location;
 
@@ -22,7 +23,7 @@ export const createUserLocation = async ({
   location: Location
   userId: string
 }): Promise<UserLocationEntity> => {
-  // @todo: find latest location
+  // @todo: take latest by createAt
   const [, , , [result]] = await query<
     [null, null, null, [UserLocationEntity]]
   >(QUERY, {
