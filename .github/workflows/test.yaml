@@ -7,6 +7,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Start SurrealDB
         uses: surrealdb/setup-surreal@v1
         with:
@@ -16,7 +17,6 @@ jobs:
           surrealdb_strict: false
           surrealdb_log: info
           surrealdb_additional_args: --allow-all
-      - uses: actions/checkout@v2
       - uses: actions/setup-node@v4
         with:
           node-version: 22
