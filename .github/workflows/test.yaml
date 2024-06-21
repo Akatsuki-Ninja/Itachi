@@ -6,8 +6,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container:
-      image: node:alpine
     services:
       surrealdb:
         image: dormammun/surreal-simple:latest
