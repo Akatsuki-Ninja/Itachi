@@ -12,13 +12,13 @@ export const Participants = () => {
       justifyContent={'center'}
       sx={{ '.str-video__video': { width: '100%' } }}
     >
-      {participants.map((p) => (
+      {participants.map((participant) => (
         <Box
           flexShrink={0}
-          key={p.sessionId}
+          key={participant.sessionId}
           w={'100%'}
         >
-          <ParticipantView participant={p} />
+          <ParticipantView participant={participant} />
         </Box>
       ))}
     </Flex>

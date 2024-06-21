@@ -10,9 +10,9 @@ export const MapContext =
 export const useMap = () => {
   const context = useContext(MapContext)
 
-  if (!context) {
-    throw new Error('useMap must be used within a MapProvider')
+  if (context) {
+    return context
   }
 
-  return context
+  throw new Error('useMap must be used within a MapProvider')
 }

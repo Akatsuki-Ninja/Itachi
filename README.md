@@ -6,6 +6,13 @@ We are using hyped technologies to test how fast
 we could develop application and use third-party services to import additional abilities
 in a way to exclude backend development.
 
+## Main Stack
+- As the replacement of the backend provider and data storage we use [Surreal.DB](https://surrealdb.com/features).
+- [React](https://react.dev/learn/describing-the-ui) as Web Framework.
+- Data querying and caching [React Query](https://tanstack.com/query/latest/docs/framework/react/overview).
+- UI Frameworks is [Chakra UI](https://v2.chakra-ui.com/docs/components).
+- [Get Stream](https://getstream.io/) as streaming provider for the messaging and video conversations.
+
 ## Development
 
 Start database.
@@ -13,17 +20,17 @@ Start database.
 docker run --rm --pull always -p 8000:8000 surrealdb/surrealdb:latest start
 ```
 
+Install dependencies.
+```shell
+npm i
+```
+
 Migrate database.
 ```shell
-node src/core/database/scripts/migrate.js
+npm run migrate
 ```
 
 Run application.
 ```shell
-npm i
 npm run dev
 ```
-
----
-
-![Logo](https://cdn.dribbble.com/userupload/8642639/file/original-f61257048a5829b70a23b6ff48adc87f.png?resize=2048x2896)

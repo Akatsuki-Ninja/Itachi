@@ -1,17 +1,14 @@
-import {
-  findAuthUser,
-  requireAuthentication,
-  type UserEntityLike,
-} from '@/core'
+import type { UserLikeDto } from '@/core'
+import { findUser, getSession } from '@/store'
 
-export const getAuthUser = async (): Promise<UserEntityLike> => {
-  await requireAuthentication()
+export const getAuthUser = async (): Promise<UserLikeDto> => {
+  const { id } = await getSession()
 
-  const userEntity = await findAuthUser()
+  const user = await findUser({ userId: id })
 
-  if (!userEntity) {
-    throw new Error('User is not authenticated')
+  if (user) {
+    return user
   }
 
-  return userEntity
+  throw new Error('Could not find authenticated user')
 }

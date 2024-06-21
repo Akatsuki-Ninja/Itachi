@@ -1,15 +1,9 @@
-import { query, requireAuthentication } from '@/core'
+import { createRoom as createRoomInStore, getSession } from '@/store'
 
-export type RoomEntity = {
-  id: string
-}
+import type { RoomDto } from '../dto/room-dto'
 
-const QUERY = 'CREATE room;'
+export const createRoom = async (): Promise<RoomDto> => {
+  await getSession()
 
-export const createRoom = async () => {
-  await requireAuthentication()
-
-  const [[roomEntity]] = await query<[[RoomEntity]]>(QUERY)
-
-  return roomEntity
+  return await createRoomInStore()
 }

@@ -8,7 +8,7 @@ import {
 } from 'stream-chat-react'
 import 'stream-chat-react/dist/css/v2/index.css'
 
-import type { ChatUserType } from '../../types/chat-user-type'
+import type { ChatUserType } from '@/web/streaming'
 
 import { Channel } from './channel'
 import { useMessengerClient } from './hooks/use-messenger-client'

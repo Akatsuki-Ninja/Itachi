@@ -1,7 +1,12 @@
-import { getDatabase } from '@/core'
+import type { UserLikeDto } from '@/core'
+import { authenticate as authenticateInStore } from '@/store'
 
-export const authenticate = async (token: string) => {
-  const db = await getDatabase()
+import { getAuthUser } from './get-auth-user'
 
-  return db.authenticate(token)
+export const authenticate = async (
+  token: string
+): Promise<null | UserLikeDto> => {
+  await authenticateInStore({ token })
+
+  return await getAuthUser()
 }

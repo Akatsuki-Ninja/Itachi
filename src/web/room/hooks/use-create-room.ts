@@ -1,15 +1,19 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { type RoomEntity } from '@/core'
-import { createRoom } from '@/web/room'
+import { createRoom, type RoomDto } from '@/core'
+import { useLogTanQuery } from '@/web/common'
 
 export const useCreateRoom = ({
   onSuccess,
 }: {
-  onSuccess?: (room: RoomEntity) => void
+  onSuccess?: (room: RoomDto) => void
 } = {}) => {
-  return useMutation({
+  const mutation = useMutation({
     mutationFn: createRoom,
     onSuccess,
   })
+
+  useLogTanQuery(mutation)
+
+  return mutation
 }

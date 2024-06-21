@@ -1,0 +1,25 @@
+name: Test
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: node:22-alpine
+    services:
+      surrealdb:
+        image: dormammun/surreal-test-database:latest
+        ports:
+          - 8000:8000
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm test
+        env:
+          SURREAL_DATABASE: itachi
+          SURREAL_URL: http://surrealdb:8000/rpc

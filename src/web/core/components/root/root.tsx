@@ -1,13 +1,14 @@
 import React from 'react'
 
+import { Router } from '@/web/pages'
+
 import { AppProvider } from './app-provider'
-import { AppRouter } from './app-router'
 
 export const Root = () => {
   return (
     <React.StrictMode>
       <AppProvider>
-        <AppRouter />
+        <Router />
       </AppProvider>
     </React.StrictMode>
   )

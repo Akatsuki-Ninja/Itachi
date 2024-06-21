@@ -1,22 +1,13 @@
-import { cutEntityId, isTemporalUser, type UserEntityLike } from '@/core'
+import { cutEntityId, type UserLikeDto } from '@/core'
 import type { ChatUserType } from '@/web/streaming'
 import { getUserPreview } from '@/web/user'
 
 export const createChatUserSignature = (
-  userLike: UserEntityLike
+  userLike: UserLikeDto
 ): ChatUserType => {
   const userPreview = getUserPreview(userLike)
-
-  if (isTemporalUser(userPreview)) {
-    return {
-      id: cutEntityId(userPreview.id),
-      name: userPreview.name,
-    }
-  }
-
   return {
-    email: userPreview.email,
+    ...getUserPreview(userLike),
     id: cutEntityId(userPreview.id),
-    name: userPreview.name,
   }
 }

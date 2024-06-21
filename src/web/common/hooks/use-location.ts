@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import type { DefaultEmptyType } from '@/common'
+import type { DefaultEmptyType, Location } from '@/common'
 import { useProgressStatus } from '@/web/common'
-
-type Location = {
-  lat: number
-  lng: number
-}
 
 export const useLocation = (defaultLocation?: Location) => {
   const [location, setLocation] =

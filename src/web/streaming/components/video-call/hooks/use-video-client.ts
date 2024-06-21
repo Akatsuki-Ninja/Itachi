@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react'
 
-import type { ChatUserType } from '../../../types/chat-user-type'
+import type { ChatUserType } from '@/web/streaming'
 
 import { createVideoClient } from './create-video-client'
 

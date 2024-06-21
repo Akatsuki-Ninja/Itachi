@@ -15,12 +15,10 @@ export const findToken = () => {
   return null
 }
 
-export const getToken = (
-  { required = true }: { required?: boolean } = { required: true }
-) => {
+export const getToken = () => {
   const token = findToken()
 
-  if (required && !token) {
+  if (!token) {
     throw new Error('Token is required')
   }
 
