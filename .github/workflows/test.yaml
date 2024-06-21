@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       surrealdb:
-        image: dormammun/surreal-simple:latest
+        image: dormammun/surreal-test-database:latest
         ports:
           - 8000:8000
         options: >-
