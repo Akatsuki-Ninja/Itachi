@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 
 import type { DefaultEmptyType, Location } from '@/common'
 import {
@@ -13,16 +13,24 @@ export const useTrackUserLocation = ({
   location: DefaultEmptyType<Location>
   userId: string
 }) => {
-  const { mutate: createUserLocation } = useCreateUserLocation()
-  const { mutate: deleteUserLocation } = useDeleteUserLocation()
+  const { mutateAsync: createUserLocation } = useCreateUserLocation()
+  const { mutateAsync: deleteUserLocation } = useDeleteUserLocation()
+
+  const saveUserLocation = useCallback(
+    async ({ location }: { location: Location }) => {
+      await deleteUserLocation({ userId })
+      await createUserLocation({ location, userId })
+    },
+    [createUserLocation, deleteUserLocation, userId]
+  )
 
   useEffect(() => {
-    if (!location) return
-
-    createUserLocation({ location, userId })
-
-    return () => {
-      deleteUserLocation({ userId })
+    if (location) {
+      saveUserLocation({ location })
     }
-  }, [createUserLocation, deleteUserLocation, location, userId])
+  }, [location, saveUserLocation])
+
+  useEffect(() => {
+    deleteUserLocation({ userId })
+  }, [deleteUserLocation, userId])
 }

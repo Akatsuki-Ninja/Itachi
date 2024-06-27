@@ -47,6 +47,4 @@ describe('Create User Location', () => {
       user,
     })
   })
-
-  it('should create and return latest location', async () => {})
 })
