@@ -1,3 +1,4 @@
+import type { UserLocationDto } from '@/core'
 import {
   deleteUserLocation as deleteUserLocationInStore,
   getSession,
@@ -7,8 +8,16 @@ export const deleteUserLocation = async ({
   userId,
 }: {
   userId: string
-}): Promise<string> => {
+}): Promise<UserLocationDto> => {
   await getSession()
 
-  return await deleteUserLocationInStore({ userId })
+  const userLocation = await deleteUserLocationInStore({ userId })
+
+  return {
+    ...userLocation,
+    location: {
+      lat: userLocation.location[1],
+      lng: userLocation.location[0],
+    },
+  }
 }

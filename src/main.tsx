@@ -1,10 +1,10 @@
-import { connect } from '@/database'
-import { renderApp } from '@/web/core'
+import { connectStore } from '@/store'
+import { renderApp } from '@/web'
 
 export const main = async () => {
-  await connect({
+  await connectStore({
     database: import.meta.env.VITE_SURREAL_DATABASE,
-    namespace: 'main',
+    namespace: import.meta.env.VITE_SURREAL_NC,
     url: import.meta.env.VITE_SURREAL_URL,
   })
 

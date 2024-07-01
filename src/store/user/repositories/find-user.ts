@@ -11,7 +11,7 @@ export const findUser = async ({
 }: {
   userId: string
 }): Promise<null | UserLikeEntity> => {
-  const [[userEntity]] = await query<[[null | UserLikeEntity]]>(QUERY, {
+  const [[userEntity]] = await query<[(null | UserLikeEntity)[]]>(QUERY, {
     userId,
   })
 

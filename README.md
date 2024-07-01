@@ -17,7 +17,12 @@ in a way to exclude backend development.
 
 Start database.
 ```shell
-docker run --rm --pull always -p 8000:8000 surrealdb/surrealdb:latest start
+docker run --rm --pull always -p 8000:8000 -d -v /tmp:/db surrealdb/surrealdb:latest start --log trace file:/db/itachi.db
+```
+
+Copy env file.
+```shell
+cp env.example env.local
 ```
 
 Install dependencies.

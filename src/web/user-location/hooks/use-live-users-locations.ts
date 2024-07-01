@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import type { UserLocationDto } from '@/core'
-import type { LiveAction } from '@/database'
-import { listenUsersLocation } from '@/store'
+import { listenUsersLocations } from '@/store'
 
 export const useLiveUsersLocations = () => {
   const [liveLocationsByUserId, setLiveLocationsByUserId] = useState<{
@@ -13,23 +12,22 @@ export const useLiveUsersLocations = () => {
     [liveLocationsByUserId]
   )
 
+  // @todo: fake pulling with setInterval and simple select
   useListenUsersLocation({
-    onChange: useCallback(({ action, payload }) => {
-      console.log(action, payload)
-
-      if ((action === 'CREATE' || action === 'UPDATE') && payload) {
+    onChange: useCallback(({ payload, type }) => {
+      if (type === 'save') {
         setLiveLocationsByUserId((prevLocations) => ({
           ...prevLocations,
-          [payload.id]: payload,
+          [payload.user.id]: payload,
         }))
       }
 
-      if ((action === 'DELETE' || action === 'CLOSE') && payload) {
+      if (type === 'delete') {
         setLiveLocationsByUserId((prevLocations) => {
           return Object.entries(prevLocations).reduce(
-            (newLocations, [id, locationId]) => {
-              if (id !== payload.id) {
-                return { ...newLocations, [id]: locationId }
+            (newLocations, [userId, location]) => {
+              if (userId !== payload.user.id) {
+                return { ...newLocations, [userId]: location }
               }
 
               return newLocations
@@ -49,10 +47,26 @@ export const useLiveUsersLocations = () => {
 const useListenUsersLocation = ({
   onChange,
 }: {
-  onChange: (data: { action: LiveAction; payload?: UserLocationDto }) => void
+  onChange: (event: {
+    payload: UserLocationDto
+    type: 'delete' | 'save'
+  }) => void
 }) => {
   useEffect(() => {
-    const unsubscribePromise = listenUsersLocation({ onChange })
+    const unsubscribePromise = listenUsersLocations({
+      onChange: ({ payload, type }) => {
+        onChange({
+          payload: {
+            ...payload,
+            location: {
+              lat: payload.location[1],
+              lng: payload.location[0],
+            },
+          },
+          type,
+        })
+      },
+    })
 
     return () => {
       unsubscribePromise.then((unsubscribe) => unsubscribe())

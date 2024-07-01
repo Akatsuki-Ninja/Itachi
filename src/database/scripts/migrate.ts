@@ -1,8 +1,12 @@
-import { close, query } from '@/database'
+import { close, connectStore, query } from '@/database'
 
 import { MIGRATION_QUERY } from './migartion-query'
-;(async () => {
+
+const migrate = async () => {
+  await connectStore()
   await query(MIGRATION_QUERY)
 
   await close()
-})()
+}
+
+migrate()

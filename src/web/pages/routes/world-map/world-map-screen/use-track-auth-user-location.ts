@@ -2,7 +2,7 @@ import { useRequiredAuth } from '@/web/auth'
 import { useLocation } from '@/web/common'
 import { useTrackUserLocation } from '@/web/user-location'
 
-export const useLiveAuthUserLocation = () => {
+export const useTrackAuthUserLocation = () => {
   const { location } = useLocation()
   const { id } = useRequiredAuth()
 

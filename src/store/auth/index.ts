@@ -8,3 +8,4 @@ export {
   signup,
   type TemporalRegisterCredentials,
 } from './repositories/signup'
+export { signUpTestUser } from './test/library/signUpTestUser'
