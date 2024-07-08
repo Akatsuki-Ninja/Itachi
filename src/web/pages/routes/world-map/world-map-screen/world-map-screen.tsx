@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 
 import { useRequiredAuth } from '@/web/auth'
 import { Map } from '@/web/common'
-import { useLiveUsersLocations } from '@/web/user-location'
+import { useFindUsersLocations } from '@/web/user-location'
 
 import { createUsersMarkers } from './create-users-markers'
 import { useTrackAuthUserLocation } from './use-track-auth-user-location'
@@ -14,7 +14,7 @@ const GOOGLE_MAPS_API_KEY = 'AIzaSyCUZf3em7J8q8WkWOfjJ1B9c5N1aKrDiVI'
 export const WorldMapScreen = () => {
   const { location } = useTrackAuthUserLocation()
 
-  const { liveLocations } = useLiveUsersLocations()
+  const { data: liveLocations } = useFindUsersLocations()
   const user = useRequiredAuth()
   const markers = useMemo(
     () =>

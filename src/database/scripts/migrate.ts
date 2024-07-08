@@ -1,4 +1,5 @@
-import { close, connectStore, query } from '@/database'
+import { close, query } from '@/database'
+import { connectStore } from '@/store'
 
 import { MIGRATION_QUERY } from './migartion-query'
 

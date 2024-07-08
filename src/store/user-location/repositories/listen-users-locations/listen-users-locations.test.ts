@@ -12,7 +12,7 @@ import {
 
 import { type Event, listenUsersLocations } from './listen-users-locations'
 
-describe('Listen Users Locations', () => {
+describe.skip('Listen Users Locations', () => {
   before(async () => {
     await connectTestStore()
     await query(MIGRATION_QUERY)
@@ -27,7 +27,7 @@ describe('Listen Users Locations', () => {
     await close()
   })
 
-  it.skip('should emit events when location created->deleted->updated', async () => {
+  it('should emit events when location created->deleted->updated', async () => {
     const user = await signUpTestUser()
 
     const events: Event[] = []
@@ -53,11 +53,6 @@ describe('Listen Users Locations', () => {
       userId: user.id,
     })
 
-    console.log({
-      createdUserLocation,
-      deletedUserLocation,
-      updatedUserLocation,
-    })
     await promise
 
     deepEqual(events, [

@@ -12,17 +12,19 @@ export const useTrackUserLocation = ({
 }) => {
   const { mutateAsync: saveUserLocation } = useSaveUserLocation()
   const { mutateAsync: deleteUserLocation } = useDeleteUserLocation()
-  const saveWaitPromise = useRef<DefaultEmptyType<Promise<any>>>()
+  const savePromise = useRef<DefaultEmptyType<Promise<any>>>()
 
   useEffect(() => {
     if (location) {
-      saveWaitPromise.current = saveUserLocation({ location, userId })
+      savePromise.current = saveUserLocation({ location, userId })
     }
   }, [location, saveUserLocation, userId])
 
   useEffect(() => {
+    // @todo: check call when browser/tab closed
+    // @todo: think how track if user leave page, component, tab, browser
     return () => {
-      saveWaitPromise.current?.then(() => {
+      savePromise.current?.then(() => {
         deleteUserLocation({ userId })
       })
     }
