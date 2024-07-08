@@ -15,7 +15,7 @@ export const createUsersMarkers = ({
   currentUser: UserLikeDto
   locations: UserLocationDto[]
 }): UserMarker[] =>
-  locations.map(({ id, lat, lng, user }) => {
+  locations.map(({ id, location: { lat, lng }, user }) => {
     return {
       color: id === currentUser.id ? 'black' : 'blue',
       coords: { lat, lng },

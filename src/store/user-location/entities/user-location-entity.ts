@@ -1,5 +1,10 @@
-import type { LocationEntity, UserEntity } from '@/store'
+import type { LocationPoint, UserEntity } from '@/store'
 
-export type UserLocationEntity = LocationEntity & {
+export type UserLocationEntity = {
+  createdAt: string
+  deletedAt: null | string
+  id: string
+  location: LocationPoint
+  updatedAt: string
   user: UserEntity
 }

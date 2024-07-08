@@ -1,15 +1,15 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { createUserLocation, type UserLocationDto } from '@/core'
+import { saveUserLocation, type UserLocationDto } from '@/core'
 import { useLogTanQuery } from '@/web/common'
 
-export const useCreateUserLocation = ({
+export const useSaveUserLocation = ({
   onSuccess,
 }: {
   onSuccess?: (userPositionEntity: UserLocationDto) => void
 } = {}) => {
   const mutation = useMutation({
-    mutationFn: createUserLocation,
+    mutationFn: saveUserLocation,
     onSuccess,
   })
 

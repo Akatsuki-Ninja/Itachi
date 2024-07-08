@@ -1,24 +1,17 @@
 import { deepEqual, ok } from 'node:assert/strict'
-import { after, before, describe, it } from 'node:test'
+import { afterEach, beforeEach, describe, it } from 'node:test'
 
-import {
-  close,
-  connectTestDb,
-  query,
-  session,
-  signup,
-  type Signup,
-} from '@/database'
+import { close, query, session, signup, type Signup } from '@/database'
 import { MIGRATION_QUERY } from '@/database/scripts/migartion-query'
-import { UserScope } from '@/store'
+import { connectTestStore, UserScope } from '@/store'
 
 describe('Session', () => {
-  before(async () => {
-    await connectTestDb()
+  beforeEach(async () => {
+    await connectTestStore()
     await query(MIGRATION_QUERY)
   })
 
-  after(async () => {
+  afterEach(async () => {
     await close()
   })
 

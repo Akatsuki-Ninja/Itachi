@@ -1,20 +1,19 @@
-import { connect } from '@/database'
+import { connect, type ConnectionOptions } from '@/database'
 
-import type { ConnectionOptions } from '../../library/database'
-
-export const connectTestDb = async (
+export const connectStore = async (
   connectionOptions: Partial<ConnectionOptions> = {}
 ) => {
   const database = connectionOptions.database ?? process.env.SURREAL_DATABASE
   const url = connectionOptions.url ?? process.env.SURREAL_URL
+  const namespace = connectionOptions.namespace ?? process.env.SURREAL_NC
 
-  if (!database || !url) {
+  if (!database || !url || !namespace) {
     throw new Error('Missing database credentials')
   }
 
   return await connect({
     database,
-    namespace: `test-${Math.random()}`,
+    namespace,
     url,
     ...connectionOptions,
   })

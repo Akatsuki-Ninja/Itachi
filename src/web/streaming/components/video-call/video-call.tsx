@@ -28,7 +28,7 @@ export const VideoCall = ({
   })
 
   useEffect(() => {
-    call.join({ create: true }).catch(console.error)
+    call.join({ create: true })
   }, [call])
 
   return (
