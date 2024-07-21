@@ -7,14 +7,14 @@ import type { UserPreview } from '@/web/user'
 type UserMarkerProps = {
   color?: string
   coords: Coords
-  user: UserPreview
+  userPreview: UserPreview
 }
 
-export const UserMarker = ({ color, coords, user }: UserMarkerProps) => {
+export const UserMarker = ({ color, coords, userPreview }: UserMarkerProps) => {
   return (
     <Marker
       color={color}
-      content={user.name}
+      content={userPreview.name}
       coords={coords}
       title={
         <Icon

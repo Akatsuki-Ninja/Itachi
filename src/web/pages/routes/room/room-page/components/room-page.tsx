@@ -3,7 +3,8 @@ import { useMemo } from 'react'
 import { useRequiredAuth } from '@/web/auth'
 import { createChatUserSignature } from '@/web/room'
 
-import { useRoomIdParam } from './hooks/use-room-id-param'
+import { useRoomIdParam } from '../hooks/use-room-id-param'
+
 import { Stream } from './stream'
 
 export const RoomPage = () => {

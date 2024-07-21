@@ -1,1 +1,1 @@
-export * from './room-page'
+export * from './components/room-page'
