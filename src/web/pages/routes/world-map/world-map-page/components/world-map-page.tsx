@@ -1,6 +1,5 @@
 import { Box } from '@chakra-ui/react'
-
-import { Map } from '@/web/common'
+import { APIProvider, Map } from '@vis.gl/react-google-maps'
 
 import { useTrackAuthUserLocation } from '../hooks/use-track-auth-user-location'
 
@@ -16,14 +15,17 @@ export const WorldMapPage = () => {
       h={'100vh'}
       w={'100vw'}
     >
-      {location ? (
-        <Map
-          apiKey={GOOGLE_MAPS_API_KEY}
-          center={location}
-        >
-          <UsersMarkers />
-        </Map>
-      ) : null}
+      <APIProvider apiKey={GOOGLE_MAPS_API_KEY}>
+        {location ? (
+          <Map
+            defaultCenter={location}
+            defaultZoom={14}
+            mapId={'map'}
+          >
+            <UsersMarkers />
+          </Map>
+        ) : null}
+      </APIProvider>
     </Box>
   )
 }

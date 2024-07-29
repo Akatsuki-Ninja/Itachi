@@ -20,18 +20,3 @@ export const useInitializeChannel = ({ channelId }: { channelId: string }) => {
 
   return { channel, isResolved }
 }
-
-/**
- * Add dark background for the room page
- *
- * Make chat on full height
- *
- * Wrap video and chat components in a paddings
- *
- * Add room title and ability to copy room link
- *
- * hide header
- * add right border
- * add blurred background
- * think how pick right width the messages section
- */
