@@ -4,9 +4,9 @@ import { useTrackUserLocation } from '@/web/user-location'
 
 export const useTrackAuthUserLocation = () => {
   const { location } = useLocation()
-  const { id } = useRequiredAuth()
+  const { id: userId } = useRequiredAuth()
 
-  useTrackUserLocation({ location, userId: id })
+  useTrackUserLocation({ location, userId })
 
   return { location }
 }
