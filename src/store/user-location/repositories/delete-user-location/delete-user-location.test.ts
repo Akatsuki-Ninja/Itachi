@@ -26,7 +26,7 @@ describe('Delete User Location', () => {
     const user = await signUpTestUser()
 
     const createdUserLocation = await saveUserLocation({
-      location: [111, 222],
+      location: { lat: 111, lng: 222 },
       userId: user.id,
     })
     const deletedUserLocation = await deleteUserLocation({ userId: user.id })

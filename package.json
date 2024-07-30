@@ -8,6 +8,7 @@
     "build": "tsc && vite build",
     "test": "node -r @swc-node/register --test src/**/*.test.ts",
     "migrate": "node -r @swc-node/register src/database/scripts/migrate.ts",
+    "seed": "node -r @swc-node/register src/database/scripts/seed.ts",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
     "preview": "vite preview"
@@ -30,6 +31,7 @@
     "surrealdb.js": "^0.11.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@swc-node/register": "^1.9.2",
     "@tanstack/eslint-plugin-query": "^5.27.7",
     "@types/google.maps": "^3.55.7",

@@ -4,7 +4,7 @@ import { useUsersMarkers } from '../library/use-users-markers'
 
 import { UserMarker } from './user-marker'
 
-const CURRENT_USER_COLOR = 'black'
+const CURRENT_USER_COLOR = '#eee'
 
 export const UsersMarkers = () => {
   const { markers } = useUsersMarkers()

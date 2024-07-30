@@ -14,6 +14,8 @@ type UserMarker = {
 export const useUsersMarkers = () => {
   const { data: liveLocations } = useFindUsersLocations()
 
+  console.log(liveLocations)
+
   return {
     markers: useMemo(
       () =>

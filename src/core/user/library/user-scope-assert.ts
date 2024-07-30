@@ -2,6 +2,7 @@ import type { RegularUserDto, TemporalUserDto, UserLikeDto } from '@/core'
 import { UserScope } from '@/store'
 
 export const isTemporalUser = (user: UserLikeDto): user is TemporalUserDto => {
+  console.log(user)
   return UserScope.temporal in user
 }
 
