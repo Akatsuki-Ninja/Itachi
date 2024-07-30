@@ -5,6 +5,7 @@ import type { Location } from '@/common'
 import { close, invalidate, query } from '@/database'
 import { MIGRATION_QUERY } from '@/database/scripts/migartion-query'
 import { connectTestStore, deleteUserLocation, signUpTestUser } from '@/store'
+import { serializeLocation } from '@/store/user-location/library/location-normalizer'
 
 import { saveUserLocation } from './save-user-location'
 
@@ -85,13 +86,18 @@ describe('Save User Location', () => {
         createdAt: createdUserLocation.createdAt,
         deletedAt: createdUserLocation.deletedAt,
         id: createdUserLocation.id,
-        location: [locationToUpdate.lng, locationToUpdate.lat],
+        location: locationToUpdate,
         user: createdUserLocation.user,
       }
     )
 
     deepEqual(await query('SELECT *, user.* FROM userLocation;'), [
-      [updatedUserLocation],
+      [
+        {
+          ...updatedUserLocation,
+          location: serializeLocation(updatedUserLocation.location),
+        },
+      ],
     ])
   })
 
