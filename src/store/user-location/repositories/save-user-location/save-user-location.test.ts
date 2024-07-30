@@ -5,7 +5,8 @@ import type { Location } from '@/common'
 import { close, invalidate, query } from '@/database'
 import { MIGRATION_QUERY } from '@/database/scripts/migartion-query'
 import { connectTestStore, deleteUserLocation, signUpTestUser } from '@/store'
-import { serializeLocation } from '@/store/user-location/library/location-normalizer'
+
+import { serializeLocation } from '../../library/location-normalizer'
 
 import { saveUserLocation } from './save-user-location'
 
