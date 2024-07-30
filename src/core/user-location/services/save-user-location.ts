@@ -15,16 +15,8 @@ export const saveUserLocation = async ({
 }): Promise<UserLocationDto> => {
   await getSession()
 
-  const userLocation = await saveUserLocationInStore({
-    location: [location.lng, location.lat],
+  return await saveUserLocationInStore({
+    location,
     userId,
   })
-
-  return {
-    ...userLocation,
-    location: {
-      lat: userLocation.location[1],
-      lng: userLocation.location[0],
-    },
-  }
 }

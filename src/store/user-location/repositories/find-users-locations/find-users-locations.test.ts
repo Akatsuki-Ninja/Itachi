@@ -31,7 +31,7 @@ describe('Find Users Locations', () => {
     {
       const user = await signUpTestUser()
       await saveUserLocation({
-        location: [111, 222],
+        location: { lat: 111, lng: 222 },
         userId: user.id,
       })
       await deleteUserLocation({ userId: user.id })
@@ -39,7 +39,7 @@ describe('Find Users Locations', () => {
 
     const user = await signUpTestUser()
     const createdUserLocation = await saveUserLocation({
-      location: [111, 222],
+      location: { lat: 111, lng: 222 },
       userId: user.id,
     })
 

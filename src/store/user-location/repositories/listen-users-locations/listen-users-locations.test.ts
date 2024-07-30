@@ -44,12 +44,12 @@ describe.skip('Listen Users Locations', () => {
     })
 
     const createdUserLocation = await saveUserLocation({
-      location: [111, 222],
+      location: { lat: 111, lng: 222 },
       userId: user.id,
     })
     const deletedUserLocation = await deleteUserLocation({ userId: user.id })
     const updatedUserLocation = await saveUserLocation({
-      location: [333, 444],
+      location: { lat: 333, lng: 444 },
       userId: user.id,
     })
 

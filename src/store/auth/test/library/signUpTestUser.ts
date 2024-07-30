@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker'
+
 import {
   getSession,
   type RegisterCredentials,
@@ -14,9 +16,9 @@ export const signUpTestUser = async ({
 } = {}) => {
   await signup({
     credentials: {
-      email: 'test-email',
-      name: 'test-user',
-      password: 'test-password',
+      email: faker.internet.email(),
+      name: faker.person.fullName(),
+      password: faker.internet.password(),
       ...credentials,
     },
     scope: scope ?? UserScope.user,

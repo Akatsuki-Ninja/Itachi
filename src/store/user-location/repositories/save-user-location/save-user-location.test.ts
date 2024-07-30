@@ -6,6 +6,8 @@ import { close, invalidate, query } from '@/database'
 import { MIGRATION_QUERY } from '@/database/scripts/migartion-query'
 import { connectTestStore, deleteUserLocation, signUpTestUser } from '@/store'
 
+import { serializeLocation } from '../../library/location-normalizer'
+
 import { saveUserLocation } from './save-user-location'
 
 describe('Save User Location', () => {
@@ -32,7 +34,7 @@ describe('Save User Location', () => {
     }
     const { createdAt, deletedAt, id, updatedAt, ...restUserLocation } =
       await saveUserLocation({
-        location: [locationToCreate.lng, locationToCreate.lat],
+        location: { lat: locationToCreate.lat, lng: locationToCreate.lng },
         userId: user.id,
       })
 
@@ -41,7 +43,7 @@ describe('Save User Location', () => {
     ok(updatedAt)
     equal(deletedAt, null)
     deepEqual(restUserLocation, {
-      location: [locationToCreate.lng, locationToCreate.lat],
+      location: { lat: locationToCreate.lat, lng: locationToCreate.lng },
       user,
     })
   })
@@ -50,7 +52,7 @@ describe('Save User Location', () => {
     const user = await signUpTestUser()
 
     const createdUserLocation = await saveUserLocation({
-      location: [111, 222],
+      location: { lat: 111, lng: 222 },
       userId: user.id,
     })
 
@@ -59,7 +61,7 @@ describe('Save User Location', () => {
       lng: 55555,
     }
     const updatedUserLocation = await saveUserLocation({
-      location: [locationToUpdate.lng, locationToUpdate.lat],
+      location: { lat: locationToUpdate.lat, lng: locationToUpdate.lng },
       userId: user.id,
     })
 
@@ -85,13 +87,18 @@ describe('Save User Location', () => {
         createdAt: createdUserLocation.createdAt,
         deletedAt: createdUserLocation.deletedAt,
         id: createdUserLocation.id,
-        location: [locationToUpdate.lng, locationToUpdate.lat],
+        location: locationToUpdate,
         user: createdUserLocation.user,
       }
     )
 
     deepEqual(await query('SELECT *, user.* FROM userLocation;'), [
-      [updatedUserLocation],
+      [
+        {
+          ...updatedUserLocation,
+          location: serializeLocation(updatedUserLocation.location),
+        },
+      ],
     ])
   })
 
@@ -99,14 +106,14 @@ describe('Save User Location', () => {
     const user = await signUpTestUser()
 
     await saveUserLocation({
-      location: [111, 222],
+      location: { lat: 111, lng: 222 },
       userId: user.id,
     })
 
     const deletedLocation = await deleteUserLocation({ userId: user.id })
 
     const updatedUserLocation = await saveUserLocation({
-      location: [333, 444],
+      location: { lat: 333, lng: 444 },
       userId: user.id,
     })
 

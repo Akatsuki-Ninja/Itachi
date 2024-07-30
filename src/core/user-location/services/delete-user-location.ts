@@ -11,13 +11,5 @@ export const deleteUserLocation = async ({
 }): Promise<UserLocationDto> => {
   await getSession()
 
-  const userLocation = await deleteUserLocationInStore({ userId })
-
-  return {
-    ...userLocation,
-    location: {
-      lat: userLocation.location[1],
-      lng: userLocation.location[0],
-    },
-  }
+  return await deleteUserLocationInStore({ userId })
 }

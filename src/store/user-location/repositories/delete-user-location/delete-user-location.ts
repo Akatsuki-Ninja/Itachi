@@ -1,6 +1,9 @@
 import { query } from '@/database'
 import type { UserLocationEntity } from '@/store'
 
+import type { UserLocationRawEntity } from '../../entities/user-location-entity'
+import { deserializeLocation } from '../../library/location-normalizer'
+
 const QUERY = `
 BEGIN;
 
@@ -28,9 +31,12 @@ export const deleteUserLocation = async ({
 }: {
   userId: string
 }): Promise<UserLocationEntity> => {
-  const [result] = await query<[UserLocationEntity]>(QUERY, {
+  const [{ location, ...rest }] = await query<[UserLocationRawEntity]>(QUERY, {
     userId,
   })
 
-  return result
+  return {
+    ...rest,
+    location: deserializeLocation(location),
+  }
 }

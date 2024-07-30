@@ -56,13 +56,7 @@ const useListenUsersLocation = ({
     const unsubscribePromise = listenUsersLocations({
       onChange: ({ payload, type }) => {
         onChange({
-          payload: {
-            ...payload,
-            location: {
-              lat: payload.location[1],
-              lng: payload.location[0],
-            },
-          },
+          payload,
           type,
         })
       },
