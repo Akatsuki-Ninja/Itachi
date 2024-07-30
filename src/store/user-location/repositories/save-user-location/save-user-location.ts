@@ -1,8 +1,9 @@
 import type { Location } from '@/common'
 import { query } from '@/database'
 import type { UserLocationEntity } from '@/store'
-import type { UserLocationRawEntity } from '@/store/user-location/entities/user-location-entity'
-import { deserializeLocation } from '@/store/user-location/library/location-normalizer'
+
+import type { UserLocationRawEntity } from '../../entities/user-location-entity'
+import { deserializeLocation } from '../../library/location-normalizer'
 
 const QUERY = `
 BEGIN;
