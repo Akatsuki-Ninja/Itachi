@@ -9,3 +9,9 @@ export type UserLocationEntity = {
   updatedAt: string
   user: UserEntity
 }
+
+export type RawLocation = [lng: number, lat: number]
+
+export type UserLocationRawEntity = Omit<UserLocationEntity, 'location'> & {
+  location: RawLocation
+}

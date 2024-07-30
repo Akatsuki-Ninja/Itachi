@@ -1,6 +1,8 @@
 import type { Location } from '@/common'
 import { query } from '@/database'
 import type { UserLocationEntity } from '@/store'
+import type { UserLocationRawEntity } from '@/store/user-location/entities/user-location-entity'
+import { deserializeLocation } from '@/store/user-location/library/location-normalizer'
 
 const QUERY = `
 BEGIN;
@@ -28,10 +30,13 @@ export const saveUserLocation = async ({
   location: Location
   userId: string
 }): Promise<UserLocationEntity> => {
-  const [result] = await query<[UserLocationEntity]>(QUERY, {
+  const [{ location, ...rest }] = await query<[UserLocationRawEntity]>(QUERY, {
     location: [lng, lat],
     userId,
   })
 
-  return result
+  return {
+    ...rest,
+    location: deserializeLocation(location),
+  }
 }

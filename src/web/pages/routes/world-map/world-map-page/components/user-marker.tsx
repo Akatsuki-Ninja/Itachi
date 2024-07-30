@@ -1,25 +1,21 @@
-import { Box, Button, Card, Divider, useDisclosure } from '@chakra-ui/react'
+import { useDisclosure } from '@chakra-ui/react'
 import {
   AdvancedMarker,
   InfoWindow,
   Pin,
   useAdvancedMarkerRef,
 } from '@vis.gl/react-google-maps'
+import type { ReactNode } from 'react'
 
 import type { Location } from '@/common'
-import type { UserPreview } from '@/web/user'
 
 type UserMarkerProps = {
+  children?: ReactNode
   color?: string
   location: Location
-  userPreview: UserPreview
 }
 
-export const UserMarker = ({
-  color,
-  location,
-  userPreview,
-}: UserMarkerProps) => {
+export const UserMarker = ({ children, color, location }: UserMarkerProps) => {
   const [markerRef, marker] = useAdvancedMarkerRef()
   const { isOpen, onClose, onOpen } = useDisclosure()
 
@@ -35,16 +31,7 @@ export const UserMarker = ({
           anchor={marker}
           onClose={onClose}
         >
-          <Card>
-            <Box>{userPreview.name}</Box>
-            <Divider />
-            <Button
-              colorScheme={'blue'}
-              size={'xs'}
-            >
-              Call
-            </Button>
-          </Card>
+          {children}
         </InfoWindow>
       ) : (
         <Pin background={color} />

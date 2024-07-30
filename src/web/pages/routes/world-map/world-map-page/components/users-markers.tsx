@@ -1,3 +1,5 @@
+import { Box, Button, Card, Divider } from '@chakra-ui/react'
+
 import { useRequiredAuth } from '@/web/auth'
 
 import { useUsersMarkers } from '../library/use-users-markers'
@@ -17,8 +19,24 @@ export const UsersMarkers = () => {
           color={authUser.id === userPreview.id ? CURRENT_USER_COLOR : color}
           key={userPreview.id}
           location={location}
-          userPreview={userPreview}
-        />
+        >
+          {
+            <Card>
+              <Box>{userPreview.name}</Box>
+              {authUser.id !== userPreview.id ? (
+                <>
+                  <Divider />
+                  <Button
+                    colorScheme={'blue'}
+                    size={'xs'}
+                  >
+                    Call
+                  </Button>
+                </>
+              ) : null}
+            </Card>
+          }
+        </UserMarker>
       ))}
     </>
   )
