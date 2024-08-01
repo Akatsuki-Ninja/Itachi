@@ -1,6 +1,6 @@
 export * from './user'
 export * from './auth'
 export * from './common'
-export * from './user-location'
+export * from './location'
 export * from './room'
 export * from './test'

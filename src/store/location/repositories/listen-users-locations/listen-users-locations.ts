@@ -8,11 +8,13 @@ export type Event = {
   type: 'delete' | 'save'
 }
 
+type ListenUsersLocationsValues = {
+  onChange: (event: Event) => void
+}
+
 export const listenUsersLocations = async ({
   onChange,
-}: {
-  onChange: (event: Event) => void
-}) => {
+}: ListenUsersLocationsValues) => {
   const [uuid] = await query<[string]>(QUERY)
 
   await liveQuery<UserLocationEntity>({

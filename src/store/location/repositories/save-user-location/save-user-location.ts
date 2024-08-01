@@ -24,13 +24,15 @@ RETURN SELECT *, user.* as user FROM ONLY $userLocation LIMIT 1;
 COMMIT;
 `
 
+type SaveUserLocationValues = {
+  location: Location
+  userId: string
+}
+
 export const saveUserLocation = async ({
   location: { lat, lng },
   userId,
-}: {
-  location: Location
-  userId: string
-}): Promise<UserLocationEntity> => {
+}: SaveUserLocationValues): Promise<UserLocationEntity> => {
   const [{ location, ...rest }] = await query<[UserLocationRawEntity]>(QUERY, {
     location: [lng, lat],
     userId,

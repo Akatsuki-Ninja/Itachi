@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
+import { useDeleteUserLocation, useSaveUserLocation } from 'src/web/location'
 
 import type { DefaultEmptyType, Location } from '@/common'
-import { useDeleteUserLocation, useSaveUserLocation } from '@/web/user-location'
 
 export const useTrackUserLocation = ({
   location,
