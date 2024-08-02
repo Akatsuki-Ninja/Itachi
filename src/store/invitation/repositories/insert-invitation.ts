@@ -15,26 +15,31 @@ LET $invitation = INSERT INTO invitation {
   status: $status,
   createdAt: $currentDate,
   updatedAt: $currentDate,
-};
+} ON DUPLICATE KEY UPDATE 
+    receiver = $input.$receiverId, 
+    sender = $input.$senderId, 
+    status = $input.status, 
+    deletedAt = null, 
+    updatedAt = $currentDate;
 
-RETURN SELECT *, user.* as user FROM ONLY $userLocation LIMIT 1;
+RETURN SELECT *, sender.*, receiver.* as user FROM ONLY $invitation LIMIT 1;
 
 COMMIT;
 `
 
-type CreateUserLocationValues = {
-  lastChangedById?: string
+type InsertInvitationValues = {
+  lastChangedById: string
   receiverId: string
   senderId: string
   status?: InvitationStatusEnum
 }
 
-export const createInvitation = async ({
+export const insertInvitation = async ({
+  lastChangedById,
   receiverId,
   senderId,
-  lastChangedById = senderId,
   status = InvitationStatusEnum.pending,
-}: CreateUserLocationValues): Promise<InvitationEntity> => {
+}: InsertInvitationValues): Promise<InvitationEntity> => {
   const [invitationEntity] = await query<[InvitationEntity]>(QUERY, {
     lastChangedById,
     receiverId,

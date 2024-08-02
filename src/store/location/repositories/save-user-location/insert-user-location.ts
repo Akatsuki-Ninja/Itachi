@@ -17,22 +17,25 @@ LET $userLocation = INSERT INTO userLocation {
   createdAt: $currentDate,
   updatedAt: $currentDate,
   deletedAt: null,
-} ON DUPLICATE KEY UPDATE location = $input.location, deletedAt = null, updatedAt = $currentDate;
+} ON DUPLICATE KEY UPDATE 
+    location = $input.location, 
+    deletedAt = null, 
+    updatedAt = $currentDate;
 
 RETURN SELECT *, user.* as user FROM ONLY $userLocation LIMIT 1;
 
 COMMIT;
 `
 
-type SaveUserLocationValues = {
+type InsertUserLocationValues = {
   location: Location
   userId: string
 }
 
-export const saveUserLocation = async ({
+export const insertUserLocation = async ({
   location: { lat, lng },
   userId,
-}: SaveUserLocationValues): Promise<UserLocationEntity> => {
+}: InsertUserLocationValues): Promise<UserLocationEntity> => {
   const [{ location, ...rest }] = await query<[UserLocationRawEntity]>(QUERY, {
     location: [lng, lat],
     userId,

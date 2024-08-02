@@ -1,7 +1,7 @@
 import type { Location } from '@/common'
 import {
   getSession,
-  saveUserLocation as saveUserLocationInStore,
+  insertUserLocation as saveUserLocationInStore,
 } from '@/store'
 
 import type { UserLocationDto } from '../dto/user-location-dto'

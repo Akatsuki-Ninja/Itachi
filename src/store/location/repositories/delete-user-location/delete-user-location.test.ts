@@ -3,7 +3,7 @@ import { after, afterEach, before, describe, it } from 'node:test'
 
 import { close, invalidate, query } from '@/database'
 import { MIGRATION_QUERY } from '@/database/scripts/migartion-query'
-import { connectTestStore, saveUserLocation, signUpTestUser } from '@/store'
+import { connectTestStore, insertUserLocation, signUpTestUser } from '@/store'
 
 import { deleteUserLocation } from './delete-user-location'
 
@@ -25,7 +25,7 @@ describe('Delete User Location', () => {
   it('should update location with deleteAt field', async () => {
     const user = await signUpTestUser()
 
-    const createdUserLocation = await saveUserLocation({
+    const createdUserLocation = await insertUserLocation({
       location: { lat: 111, lng: 222 },
       userId: user.id,
     })
