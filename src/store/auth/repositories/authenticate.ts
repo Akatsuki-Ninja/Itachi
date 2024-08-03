@@ -1,4 +1,8 @@
 import { authenticate as authenticateInDb } from '@/database'
 
-export const authenticate = async ({ token }: { token: string }) =>
-  await authenticateInDb(token)
+import type { UserToken } from '../types/user-token'
+
+export type AuthValues = { token: UserToken }
+
+export const authenticate = async (values: AuthValues): Promise<boolean> =>
+  await authenticateInDb(values)

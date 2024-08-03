@@ -1,15 +1,15 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { saveUserLocation, type UserLocationDto } from '@/core'
+import { InviteDto, sendInvite } from '@/core'
 import { useLogTanQuery } from '@/web/common'
 
-export const useSaveUserLocation = ({
+export const useSendInvitation = ({
   onSuccess,
 }: {
-  onSuccess?: (userPositionDto: UserLocationDto) => void
+  onSuccess?: (invitationDto: InviteDto) => void
 } = {}) => {
   const mutation = useMutation({
-    mutationFn: saveUserLocation,
+    mutationFn: sendInvite,
     onSuccess,
   })
 

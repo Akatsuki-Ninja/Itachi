@@ -8,42 +8,47 @@ import {
 const QUERY = `
 BEGIN;
 
+LET $currentDate = time::now();
+
 LET $invitation = INSERT INTO invitation {
-  id: $id,
   receiver: <record>$receiverId,
   sender: <record>$senderId,
+  lastChangedBy: <record>$auth.id,
+  room: <record>$roomId,
   status: $status,
   createdAt: $currentDate,
   updatedAt: $currentDate,
 } ON DUPLICATE KEY UPDATE 
-    receiver = $input.$receiverId, 
-    sender = $input.$senderId, 
-    status = $input.status, 
-    deletedAt = null, 
-    updatedAt = $currentDate;
+  receiver = <record>$input.receiverId, 
+  sender = <record>$input.senderId, 
+  room = <record>$input.roomId,
+  lastChangedBy = $auth.id,
+  status = $input.status, 
+  updatedAt = $currentDate;
 
-RETURN SELECT *, sender.*, receiver.* as user FROM ONLY $invitation LIMIT 1;
+RETURN SELECT *, 
+  sender.* as sender, 
+  receiver.* as receiver, 
+  room.* as room,
+  status
+  FROM ONLY $invitation LIMIT 1;
 
 COMMIT;
 `
 
-type InsertInvitationValues = {
-  lastChangedById: string
+export type SaveInvitationValues = {
   receiverId: string
+  roomId: string
   senderId: string
   status?: InvitationStatusEnum
 }
 
-export const insertInvitation = async ({
-  lastChangedById,
-  receiverId,
-  senderId,
+export const saveInvitation = async ({
   status = InvitationStatusEnum.pending,
-}: InsertInvitationValues): Promise<InvitationEntity> => {
+  ...restValues
+}: SaveInvitationValues): Promise<InvitationEntity> => {
   const [invitationEntity] = await query<[InvitationEntity]>(QUERY, {
-    lastChangedById,
-    receiverId,
-    senderId,
+    ...restValues,
     status,
   })
 

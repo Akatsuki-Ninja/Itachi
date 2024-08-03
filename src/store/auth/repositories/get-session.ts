@@ -1,7 +1,7 @@
 import { session } from '@/database'
 import type { UserLikeEntity } from '@/store'
 
-export const getSession = async () => {
+export const getSession = async (): Promise<UserLikeEntity> => {
   const auth = await session<UserLikeEntity>()
 
   if (auth) {

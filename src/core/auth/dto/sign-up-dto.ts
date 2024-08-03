@@ -1,3 +1,3 @@
-import type { RegisterCredentials, TemporalRegisterCredentials } from '@/store'
+import type { SingupValues, TemporalSignupValues } from '@/store'
 
-export type SignUpDto = RegisterCredentials | TemporalRegisterCredentials
+export type SignUpDto = SingupValues | TemporalSignupValues

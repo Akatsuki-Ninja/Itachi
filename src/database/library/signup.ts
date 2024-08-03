@@ -1,5 +1,7 @@
 import { getDatabase } from '@/database'
 
+import { Token } from '../types/token'
+
 export type Signup = {
   email?: string
   name?: string
@@ -7,7 +9,7 @@ export type Signup = {
   scope: string
 }
 
-export const signup = async (payload: Signup): Promise<string> => {
+export const signup = async (payload: Signup): Promise<Token> => {
   const db = await getDatabase()
 
   return await db.signup(payload)

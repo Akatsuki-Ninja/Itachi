@@ -1,10 +1,10 @@
-import { signup } from '@/store'
+import { signup as signUpInDB, type UserToken } from '@/store'
 
 import type { SignUpDto } from '../dto/sign-up-dto'
 import { getScopeFromCredentials } from '../library/get-scope'
 
-export const register = async (credentials: SignUpDto): Promise<string> => {
-  return await signup({
+export const signup = async (credentials: SignUpDto): Promise<UserToken> => {
+  return await signUpInDB({
     credentials,
     scope: getScopeFromCredentials(credentials),
   })

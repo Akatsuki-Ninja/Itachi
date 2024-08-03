@@ -1,18 +1,15 @@
-import type { Location } from '@/common'
 import {
   getSession,
-  insertUserLocation as saveUserLocationInStore,
+  saveUserLocation as saveUserLocationInStore,
 } from '@/store'
 
+import type { SaveUserLocationDto } from '../dto/save-user-location-dto'
 import type { UserLocationDto } from '../dto/user-location-dto'
 
 export const saveUserLocation = async ({
   location,
   userId,
-}: {
-  location: Location
-  userId: string
-}): Promise<UserLocationDto> => {
+}: SaveUserLocationDto): Promise<UserLocationDto> => {
   await getSession()
 
   return await saveUserLocationInStore({

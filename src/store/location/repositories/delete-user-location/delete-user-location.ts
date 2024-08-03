@@ -26,19 +26,20 @@ RETURN SELECT *, user.* as user FROM ONLY $userLocation LIMIT 1;
 COMMIT;
 `
 
-type DeleteUserLocationValues = {
+export type DeleteUserLocationValues = {
   userId: string
 }
 
-export const deleteUserLocation = async ({
-  userId,
-}: DeleteUserLocationValues): Promise<UserLocationEntity> => {
-  const [{ location, ...rest }] = await query<[UserLocationRawEntity]>(QUERY, {
-    userId,
-  })
+export const deleteUserLocation = async (
+  values: DeleteUserLocationValues
+): Promise<UserLocationEntity> => {
+  const [{ location, ...restValues }] = await query<[UserLocationRawEntity]>(
+    QUERY,
+    values
+  )
 
   return {
-    ...rest,
+    ...restValues,
     location: deserializeLocation(location),
   }
 }

@@ -8,7 +8,7 @@ import { connectTestStore, deleteUserLocation, signUpTestUser } from '@/store'
 
 import { serializeLocation } from '../../library/location-normalizer'
 
-import { insertUserLocation } from './insert-user-location'
+import { saveUserLocation } from './save-user-location'
 
 describe('Save User Location', () => {
   before(async () => {
@@ -33,7 +33,7 @@ describe('Save User Location', () => {
       lng: 222,
     }
     const { createdAt, deletedAt, id, updatedAt, ...restUserLocation } =
-      await insertUserLocation({
+      await saveUserLocation({
         location: { lat: locationToCreate.lat, lng: locationToCreate.lng },
         userId: user.id,
       })
@@ -51,7 +51,7 @@ describe('Save User Location', () => {
   it('should update and return location', async () => {
     const user = await signUpTestUser()
 
-    const createdUserLocation = await insertUserLocation({
+    const createdUserLocation = await saveUserLocation({
       location: { lat: 111, lng: 222 },
       userId: user.id,
     })
@@ -60,7 +60,7 @@ describe('Save User Location', () => {
       lat: 55555,
       lng: 55555,
     }
-    const updatedUserLocation = await insertUserLocation({
+    const updatedUserLocation = await saveUserLocation({
       location: { lat: locationToUpdate.lat, lng: locationToUpdate.lng },
       userId: user.id,
     })
@@ -105,14 +105,14 @@ describe('Save User Location', () => {
   it('should update deleted location and clear deleteAt field', async () => {
     const user = await signUpTestUser()
 
-    await insertUserLocation({
+    await saveUserLocation({
       location: { lat: 111, lng: 222 },
       userId: user.id,
     })
 
     const deletedLocation = await deleteUserLocation({ userId: user.id })
 
-    const updatedUserLocation = await insertUserLocation({
+    const updatedUserLocation = await saveUserLocation({
       location: { lat: 333, lng: 444 },
       userId: user.id,
     })

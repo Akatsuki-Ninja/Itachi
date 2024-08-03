@@ -2,4 +2,7 @@ export {
   type InvitationEntity,
   InvitationStatusEnum,
 } from './entities/invitation-entity'
-export { insertInvitation } from './repositories/insert-invitation'
+export {
+  saveInvitation,
+  type SaveInvitationValues,
+} from './repositories/save-invitation'

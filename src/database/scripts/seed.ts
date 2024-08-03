@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker'
 
 import type { RegularUserDto } from '@/core'
 import { close, query } from '@/database'
-import { connectStore, insertUserLocation } from '@/store'
+import { connectStore, saveUserLocation } from '@/store'
 
 const userCreateQuery = `
 CREATE user CONTENT {
@@ -32,7 +32,7 @@ const seed = async () => {
 
   await Promise.all(
     users.map((user) =>
-      insertUserLocation({
+      saveUserLocation({
         location: {
           lat: faker.location.latitude(),
           lng: faker.location.longitude(),

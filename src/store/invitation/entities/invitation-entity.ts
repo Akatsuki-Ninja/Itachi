@@ -1,4 +1,4 @@
-import type { UserLikeEntity } from '@/store'
+import type { RoomDto, UserLikeDto } from '@/core'
 
 export enum InvitationStatusEnum {
   pending = 'pending',
@@ -8,8 +8,9 @@ export enum InvitationStatusEnum {
 
 export type InvitationEntity = {
   id: string
-  lastChangedBy: UserLikeEntity
-  receiver: UserLikeEntity
-  sender: UserLikeEntity
+  lastChangedBy: UserLikeDto
+  receiver: UserLikeDto
+  room: RoomDto
+  sender: UserLikeDto
   status: InvitationStatusEnum
 }

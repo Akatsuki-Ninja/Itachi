@@ -6,7 +6,7 @@ import { MIGRATION_QUERY } from '@/database/scripts/migartion-query'
 import {
   connectTestStore,
   deleteUserLocation,
-  insertUserLocation,
+  saveUserLocation,
   signUpTestUser,
 } from '@/store'
 
@@ -43,12 +43,12 @@ describe.skip('Listen Users Locations', () => {
       },
     })
 
-    const createdUserLocation = await insertUserLocation({
+    const createdUserLocation = await saveUserLocation({
       location: { lat: 111, lng: 222 },
       userId: user.id,
     })
     const deletedUserLocation = await deleteUserLocation({ userId: user.id })
-    const updatedUserLocation = await insertUserLocation({
+    const updatedUserLocation = await saveUserLocation({
       location: { lat: 333, lng: 444 },
       userId: user.id,
     })

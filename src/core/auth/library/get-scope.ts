@@ -1,11 +1,11 @@
 import {
-  type RegisterCredentials,
-  type TemporalRegisterCredentials,
+  type SingupValues,
+  type TemporalSignupValues,
   UserScope,
 } from '@/store'
 
 export const getScopeFromCredentials = (
-  credentials: RegisterCredentials | TemporalRegisterCredentials
+  credentials: SingupValues | TemporalSignupValues
 ): UserScope => {
   if (isTemporalCredentials(credentials)) {
     return UserScope.temporal
@@ -15,7 +15,7 @@ export const getScopeFromCredentials = (
 }
 
 const isTemporalCredentials = (
-  credentials: RegisterCredentials | TemporalRegisterCredentials
-): credentials is TemporalRegisterCredentials => {
+  credentials: SingupValues | TemporalSignupValues
+): credentials is TemporalSignupValues => {
   return !('email' in credentials)
 }

@@ -27,22 +27,25 @@ RETURN SELECT *, user.* as user FROM ONLY $userLocation LIMIT 1;
 COMMIT;
 `
 
-type InsertUserLocationValues = {
+export type SaveUserLocationValues = {
   location: Location
   userId: string
 }
 
-export const insertUserLocation = async ({
+export const saveUserLocation = async ({
   location: { lat, lng },
-  userId,
-}: InsertUserLocationValues): Promise<UserLocationEntity> => {
-  const [{ location, ...rest }] = await query<[UserLocationRawEntity]>(QUERY, {
-    location: [lng, lat],
-    userId,
-  })
+  ...restValues
+}: SaveUserLocationValues): Promise<UserLocationEntity> => {
+  const [{ location, ...restEntity }] = await query<[UserLocationRawEntity]>(
+    QUERY,
+    {
+      location: [lng, lat],
+      ...restValues,
+    }
+  )
 
   return {
-    ...rest,
+    ...restEntity,
     location: deserializeLocation(location),
   }
 }

@@ -1,6 +1,9 @@
 import { Box, Button, Card, Divider } from '@chakra-ui/react'
+import { useCallback } from 'react'
 
+import { InvitationStatusEnum } from '@/store'
 import { useRequiredAuth } from '@/web/auth'
+import { useSendInvitation } from '@/web/invitation'
 
 import { useUsersMarkers } from '../library/use-users-markers'
 
@@ -11,6 +14,18 @@ const CURRENT_USER_COLOR = '#eee'
 export const UsersMarkers = () => {
   const { markers } = useUsersMarkers()
   const authUser = useRequiredAuth()
+  const { mutateAsync } = useSendInvitation()
+
+  const invite = useCallback(
+    async ({ receiverId }: { receiverId: string }) => {
+      await mutateAsync({
+        receiverId,
+        senderId: authUser.id,
+        status: InvitationStatusEnum.pending,
+      })
+    },
+    [authUser.id, mutateAsync]
+  )
 
   return (
     <>
@@ -28,6 +43,7 @@ export const UsersMarkers = () => {
                   <Divider />
                   <Button
                     colorScheme={'blue'}
+                    onClick={() => invite({ receiverId: userPreview.id })}
                     size={'xs'}
                   >
                     Call
