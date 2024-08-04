@@ -13,7 +13,7 @@ LET $currentDate = time::now();
 LET $invitation = INSERT INTO invitation {
   receiver: <record>$receiverId,
   sender: <record>$senderId,
-  lastChangedBy: <record>$auth.id,
+  lastChangedBy: <record>$auth,
   room: <record>$roomId,
   status: $status,
   createdAt: $currentDate,
@@ -31,7 +31,7 @@ RETURN SELECT *,
   receiver.* as receiver, 
   room.* as room,
   status
-  FROM ONLY $invitation LIMIT 1;
+  FROM ONLY invitation LIMIT 1;
 
 COMMIT;
 `

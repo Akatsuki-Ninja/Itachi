@@ -10,6 +10,7 @@ BEGIN;
 
 LET $currentDate = time::now();
 LET $id = type::thing("userLocation", $userId);
+
 LET $userLocation = INSERT INTO userLocation {
   id: $id,
   location: $location,
@@ -18,9 +19,9 @@ LET $userLocation = INSERT INTO userLocation {
   updatedAt: $currentDate,
   deletedAt: null,
 } ON DUPLICATE KEY UPDATE 
-    location = $input.location, 
-    deletedAt = null, 
-    updatedAt = $currentDate;
+  deletedAt = null, 
+  location = $input.location, 
+  updatedAt = $currentDate;
 
 RETURN SELECT *, user.* as user FROM ONLY $userLocation LIMIT 1;
 

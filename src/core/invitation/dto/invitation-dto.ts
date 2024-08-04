@@ -1,3 +1,3 @@
 import type { InvitationEntity } from '@/store'
 
-export type InviteDto = InvitationEntity
+export type InvitationDto = InvitationEntity

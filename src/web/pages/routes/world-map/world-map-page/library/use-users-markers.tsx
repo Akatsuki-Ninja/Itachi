@@ -12,7 +12,9 @@ type UserMarker = {
 }
 
 export const useUsersMarkers = () => {
-  const { data: liveLocations } = useFindUsersLocations()
+  const { data: liveLocations } = useFindUsersLocations({
+    refetchInterval: 3000,
+  })
 
   return {
     markers: useMemo(

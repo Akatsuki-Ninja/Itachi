@@ -1,15 +1,15 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { InviteDto, sendInvite } from '@/core'
+import { InvitationDto, sendInvitation } from '@/core'
 import { useLogTanQuery } from '@/web/common'
 
 export const useSendInvitation = ({
   onSuccess,
 }: {
-  onSuccess?: (invitationDto: InviteDto) => void
+  onSuccess?: (invitationDto: InvitationDto) => void
 } = {}) => {
   const mutation = useMutation({
-    mutationFn: sendInvite,
+    mutationFn: sendInvitation,
     onSuccess,
   })
 

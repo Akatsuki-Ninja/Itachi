@@ -1,4 +1,5 @@
-export { type InviteDto } from './dto/invite-dto'
-export { type SendInviteDto } from './dto/send-invite-dto'
-
-export { sendInvite } from './services/send-invite'
+export { type FindInvitationDto } from './dto/find-invitation-dto'
+export { type InvitationDto } from './dto/invitation-dto'
+export { type SendInvitationDto } from './dto/send-invitation-dto'
+export { findInvitation } from './services/find-invitation'
+export { sendInvitation } from './services/send-invitation'
