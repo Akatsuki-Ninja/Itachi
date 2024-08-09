@@ -11,6 +11,7 @@ BEGIN;
 LET $currentDate = time::now();
 
 LET $invitation = INSERT INTO invitation {
+  id: $id,
   receiver: <record>$receiverId,
   sender: <record>$senderId,
   lastChangedBy: <record>$auth,
@@ -37,6 +38,7 @@ COMMIT;
 `
 
 export type SaveInvitationValues = {
+  id?: string
   receiverId: string
   roomId: string
   senderId: string

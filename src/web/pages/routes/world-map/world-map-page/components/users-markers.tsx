@@ -1,4 +1,4 @@
-import { Box, Button, Card, Divider } from '@chakra-ui/react'
+import { Box, Button, Card, Divider, useToast } from '@chakra-ui/react'
 import { useCallback } from 'react'
 
 import { InvitationStatusEnum } from '@/store'
@@ -15,16 +15,35 @@ export const UsersMarkers = () => {
   const { markers } = useUsersMarkers()
   const authUser = useRequiredAuth()
   const { mutateAsync } = useSendInvitation()
+  const toast = useToast()
 
   const invite = useCallback(
     async ({ receiverId }: { receiverId: string }) => {
+      /**
+       * when catch busy error then show notification
+       * if sender in active -> you already calling
+       * if receiver in active -> receiver is busy
+       *
+       * disable call button with tooltip while sender has active invitation
+       */
       await mutateAsync({
         receiverId,
         senderId: authUser.id,
         status: InvitationStatusEnum.pending,
       })
+      toast({
+        description: (
+          <>
+            <Button>Cancel</Button>
+          </>
+        ),
+        duration: 10000,
+        isClosable: true,
+        status: 'info',
+        title: 'Invitation sent.',
+      })
     },
-    [authUser.id, mutateAsync]
+    [authUser.id, mutateAsync, toast]
   )
 
   return (

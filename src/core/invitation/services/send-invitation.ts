@@ -8,10 +8,22 @@ export const sendInvitation = async (
 ): Promise<InvitationDto> => {
   await getSession()
 
-  const room = await createRoom()
+  let roomId = inviteDto.roomId
+
+  if (!roomId) {
+    const room = await createRoom()
+    roomId = room.id
+  }
+
+  /**
+   * questions: what if this is accepting?
+   *
+   * check if user are busy
+   * throw error -> user busy
+   */
 
   return await saveInvitation({
     ...inviteDto,
-    roomId: room.id,
+    roomId,
   })
 }

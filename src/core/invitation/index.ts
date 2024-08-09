@@ -1,5 +1,5 @@
-export { type FindInvitationDto } from './dto/find-invitation-dto'
+export { type FindActiveInvitationDto } from './dto/find-active-invitation-dto'
 export { type InvitationDto } from './dto/invitation-dto'
 export { type SendInvitationDto } from './dto/send-invitation-dto'
-export { findInvitation } from './services/find-invitation'
+export { findActiveInvitation } from './services/find-active-invitation'
 export { sendInvitation } from './services/send-invitation'

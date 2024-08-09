@@ -1,9 +1,9 @@
 import type { RoomDto, UserLikeDto } from '@/core'
 
 export enum InvitationStatusEnum {
+  accepted = 'accepted',
   pending = 'pending',
   rejected = 'rejected',
-  resolved = 'resolved',
 }
 
 export type InvitationEntity = {

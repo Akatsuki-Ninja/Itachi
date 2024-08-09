@@ -3,9 +3,9 @@ export {
   InvitationStatusEnum,
 } from './entities/invitation-entity'
 export {
-  findInvitation,
-  type FindInvitationValues,
-} from './repositories/find-invitation'
+  findActiveInvitation,
+  type FindActiveInvitationValues,
+} from './repositories/find-active-invitation'
 export {
   saveInvitation,
   type SaveInvitationValues,
