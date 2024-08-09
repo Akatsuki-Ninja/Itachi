@@ -1,17 +1,12 @@
 import { faker } from '@faker-js/faker'
 
-import {
-  getSession,
-  type RegisterCredentials,
-  signup,
-  UserScope,
-} from '@/store'
+import { getSession, signup, type SingupValues, UserScope } from '@/store'
 
 export const signUpTestUser = async ({
   credentials,
   scope,
 }: {
-  credentials?: Partial<RegisterCredentials>
+  credentials?: Partial<SingupValues>
   scope?: UserScope
 } = {}) => {
   await signup({

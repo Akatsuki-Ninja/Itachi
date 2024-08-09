@@ -6,7 +6,7 @@ export const findAuth = async () => {
   const token = findToken()
 
   if (token) {
-    await authenticate(token)
+    await authenticate({ token })
 
     return await getAuthUser()
   }

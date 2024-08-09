@@ -1,9 +1,9 @@
-import { register, type SignUpDto } from '@/core'
+import { type SignUpDto, signup as signupInCore } from '@/core'
 
 import { saveToken } from '../library/manage-token'
 
 export const signup = async (credentials: SignUpDto) => {
-  const token = await register(credentials)
+  const token = await signupInCore(credentials)
 
   saveToken(token)
 

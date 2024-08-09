@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
+import { useFindUsersLocations } from 'src/web/location'
 
 import type { Location } from '@/common'
 import type { UserLocationDto } from '@/core'
 import { getUserPreview, type UserPreview } from '@/web/user'
-import { useFindUsersLocations } from '@/web/user-location'
 
 type UserMarker = {
   color: string
@@ -12,7 +12,9 @@ type UserMarker = {
 }
 
 export const useUsersMarkers = () => {
-  const { data: liveLocations } = useFindUsersLocations()
+  const { data: liveLocations } = useFindUsersLocations({
+    refetchInterval: 3000,
+  })
 
   return {
     markers: useMemo(

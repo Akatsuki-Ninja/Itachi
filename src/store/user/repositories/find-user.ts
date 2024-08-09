@@ -3,17 +3,17 @@ import { query } from '@/database'
 import type { UserLikeEntity } from '../entities/user-like-entity'
 
 const QUERY = `
-  SELECT * FROM user WHERE id = $userId;
+SELECT * FROM ONLY user WHERE id = $userId LIMIT 1;
 `
 
-export const findUser = async ({
-  userId,
-}: {
+export type FindUserValues = {
   userId: string
-}): Promise<null | UserLikeEntity> => {
-  const [[userEntity]] = await query<[(null | UserLikeEntity)[]]>(QUERY, {
-    userId,
-  })
+}
+
+export const findUser = async (
+  values: FindUserValues
+): Promise<null | UserLikeEntity> => {
+  const [userEntity] = await query<(null | UserLikeEntity)[]>(QUERY, values)
 
   return userEntity
 }

@@ -1,11 +1,12 @@
 export type { TemporalUserEntity } from './entities/temporal-user-entity'
 export type { UserEntity } from './entities/user-entity'
 export { UserScope } from './library/user-scope'
-export { authenticate } from './repositories/authenticate'
+export { authenticate, type AuthValues } from './repositories/authenticate'
 export { getSession } from './repositories/get-session'
 export {
-  type RegisterCredentials,
   signup,
-  type TemporalRegisterCredentials,
+  type SingupValues,
+  type TemporalSignupValues,
 } from './repositories/signup'
 export { signUpTestUser } from './test/library/signUpTestUser'
+export type { UserToken } from './types/user-token'
